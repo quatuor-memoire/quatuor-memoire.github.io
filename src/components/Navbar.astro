@@ -1,11 +1,14 @@
 ---
-const { page } = Astro.props;
+let { page } = Astro.props;
 ---
 
-<div class="flex max-md:flex-row gap-6 justify-between">
-  <div class="text-9xl">Quatuor Mémoire</div>
-  <div class="flex flex-col list-none gap-6">
-    <ul>
+<nav
+  id="navbar"
+  class="flex flex-row justify-between items-center mx-10 mt-5 text-white"
+>
+  <div class="text-6xl">Quatuor Mémoire</div>
+  <div class="list-none">
+    <ul class="flex flex-row gap-4 justify-around items-center text-lg">
       <li><a href="/index/">About</a></li>
       <li><a href="/calendar/">Calendar</a></li>
       <li><a href="/media/">Media</a></li>
@@ -13,4 +16,4 @@ const { page } = Astro.props;
       <li><a href="/contact/">Contact</a></li>
     </ul>
   </div>
-</div>
+</nav>

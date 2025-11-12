@@ -1,0 +1,47 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact Us">
+  <div class="mt-10">
+    <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="flex flex-col justify-center items-center gap-4"
+    >
+      <input
+        type="hidden"
+        name="access_key"
+        value="c06b9c47-bc59-413c-914d-5534c6802cb1"
+      />
+      <div>
+        <label for="name">Name</label>
+        <input
+          type="text"
+          name="name"
+          class="border-2 bg-[#7c4118]/30 w-2xl h-fit text-lg p-2"
+          required
+        />
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          name="email"
+          class="border-2 bg-[#7c4118]/30 w-2xl h-fit text-lg p-2"
+          required
+        />
+      </div>
+      <textarea
+        name="message"
+        placeholder="Reach out ot us here!"
+        class="border-2 ml-10 bg-[#7c4118]/30 w-1/2 h-[calc(100vh/3)] text-lg p-2"
+        required></textarea>
+      <button
+        type="submit"
+        class="rounded-md bg-[#E4D1BF] text-2xl px-6 py-2 border-2 hover:shadow-slate-600 hover:shadow-sm"
+        >Submit</button
+      >
+    </form>
+  </div>
+</BaseLayout>
