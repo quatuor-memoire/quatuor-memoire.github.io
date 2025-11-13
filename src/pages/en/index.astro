@@ -14,6 +14,8 @@ import Portrait_Marilou from "../../photos/Portrait_Marilou.jpg";
 import Portrait_Meggie from "../../photos/Portrait_Meggie.jpg";
 import Quator_Memoire_Performance from "../../photos/Quatuor-Memoire_performance.jpg";
 
+const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
+
 const bios = [
   "Violinist Bailey Wantuch specializes in contemporary and 20th-century music. Based in Montréal, she is the co-founder of the new music ensembles Collectif Radiance and Quatuor Mémoire. Recently, she appeared as a soloist with the McGill University Contemporary Music Ensemble, performing Kaija Saariaho’s violin concerto Graal Théâtre. Other notable performances include concerts with Ensemble Paramirabo and the opening concert of the Montréal Ligeti Festival. A dedicated collaborator, she works closely with local composers and has participated in festivals such as soundSCAPE, Fresh Inc, and the Composers Conference. She has also served as faculty for the new music program at the Domaine Forget Academy.\nAn active chamber musician, Bailey has performed internationally. Her piano trio, Trio Miltenberg, has appeared in Québec, Newfoundland, and Germany. She has also performed with Quatuor Æternum in the Netherlands, in series such as Muziekkamer Assen. As a violinist of Quatuor Mémoire, she has performed at the Festival Montréal/Nouvelles Musiques 2025 and Québec musiques parallèles. The quartet’s debut album, featuring works by Florence Tremblay, Louis-Michel Tougas, and Olivier St-Pierre, will be released in fall 2025 on the label Mnémosyne.\nBailey earned her Bachelor of Music from Northwestern University (studying with Blair Milton) and her Master of Music from McGill University (studying with Violaine Melançon). She is currently pursuing a Doctorate in Musical Performance at McGill University, supported by a Fonds de recherche du Québec (FRQ) scholarship for her research on the music of composer Nikolai Roslavets.",
   "Graduated from the Conservatoire de musique de Montréal (Master’s degree) and McGill University (Post-Graduate Artist Diploma), Meggie Lacombe is a violinist recognized for her versatility.\nSpecializing in contemporary, experimental, and multidisciplinary music, she actively contributes to the creation and performance of new works, notably within the contexts of Akousma, the Radiance Collective, and the Société de musique contemporaine du Québec (SMCQ).\nAs a chamber musician, Meggie has taken part in the Domaine Forget Chamber Music Academy, where she had the privilege of performing alongside Steven Dann and Marc Fewer. She has been a member of the Quatuor Mémoire since its founding in 2024.\nConcertmaster of the Orchestre symphonique de la Côte-Nord, she demonstrates equal mastery in orchestral performance, also performing with the Orchestre de l’Agora, I Musici de Montréal Chamber Orchestra, the Orchestre Symphonique de l’Estuaire, and several other orchestras across Quebec.\nDriven by a desire to integrate other artistic disciplines into her musical practice, Meggie pursued parallel studies in dramaturgy and stage direction at UQAM while completing her conservatory training. This interest led to a collaboration with the collective L’Éléphante for the youth theatre production Hercule et Naïade, performed nearly thirty times across Quebec, for which she served as both sound designer and performer.\nHer artistic practice is characterized by a pursuit of authentic musical expression, an exploration of aesthetic paradigms, and a continual search for forms of performance that transcend established traditions — motivating her sustained interest in new music and violin extended techniques.",
@@ -29,9 +31,9 @@ const bios = [
       showNavbar: false,
       scrollY: 0,
       smoothY: 0,
-      init() {
+      init() {        
         const update = () => {
-          this.smoothY += (this.scrollY - this.smoothY) * 0.1; // smooth interpolation
+          this.smoothY += (this.scrollY - this.smoothY) * 0.1;
           requestAnimationFrame(update);
         };
         update();
@@ -55,10 +57,10 @@ const bios = [
     </div>
 
     <div
-      class="fixed top-0 left-0 right-0 z-40 transition-transform duration-500"
+      class="fixed top-0 left-0 right-0 w-screen z-40 transition-transform duration-500 -translate-y-full"
       :class="showNavbar ? 'translate-y-0' : '-translate-y-full'"
     >
-      <Navbar />
+      <Navbar locale={currentLocale} page="about" />
     </div>
 
     <section
@@ -77,12 +79,18 @@ const bios = [
       class="relative z-10 flex justify-center items-center min-h-[50vh] w-full overflow-hidden"
       x-intersect="fadeBg = true"
     >
+      <div class="flex flex-col gap-1">
+        <div class="flex text-4xl justify-center items-center text-white">
+          About Quatuor Mémoire
+        </div>
+        <div class="border-2 border-white w-56 h-1"></div>
+      </div>
       <div
         class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
       >
         <div
           class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.05}px)`"
+          :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
             src={EB_Quator_Memoire_1}
@@ -93,7 +101,7 @@ const bios = [
 
         <div
           class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.08}px)`"
+          :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <p class="text-lg text-white text-right">
             Quatuor Mémoire is a Montréal-based string quartet dedicated to
@@ -117,7 +125,7 @@ const bios = [
       >
         <div
           class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.08}px)`"
+          :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <p class="text-lg text-white text-left">
             Since its founding, Mémoire has launched numerous creative projects,
@@ -133,7 +141,7 @@ const bios = [
         </div>
         <div
           class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.05}px)`"
+          :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
             src={EB_Quator_Memoire_3}
@@ -152,7 +160,7 @@ const bios = [
       >
         <div
           class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.05}px)`"
+          :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
             src={EB_Quator_Memoire_2}
@@ -163,7 +171,7 @@ const bios = [
 
         <div
           class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.08}px)`"
+          :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <p class="text-lg text-white text-right">
             In addition to new music, Mémoire has explored Canadian works from
@@ -185,7 +193,7 @@ const bios = [
       >
         <div
           class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.08}px)`"
+          :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <p class="text-lg text-white text-left">
             Highlights of the 2025-2026 season include a co-production with No
@@ -202,19 +210,25 @@ const bios = [
 
         <div
           class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
-          :style="`transform: translateY(${smoothY * -0.05}px)`"
+          :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
             src={EB_Quator_Memoire_5}
             alt="Photo of all members of the band posing in front of a building."
-            class="rounded-xl shadow-lg w-full h-auto"
+            class="rounded-lg shadow-lg w-full h-auto"
           />
         </div>
       </div>
     </section>
     <section
-      class="relative z-10 w-full py-20 overflow-x-auto flex justify-center items-center mx-10"
+      class="relative z-10 w-full py-20 overflow-x-auto flex justify-center items-center gap-2"
     >
+      <div class="flex flex-col gap-1">
+        <div class="flex text-4xl justify-center items-center text-white">
+          The Ensemble
+        </div>
+        <div class="border-2 border-white w-full h-1"></div>
+      </div>
       <div class="flex space-x-6">
         <div
           x-data="{ open: false }"
