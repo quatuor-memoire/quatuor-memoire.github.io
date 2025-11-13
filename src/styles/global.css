@@ -14,16 +14,33 @@
   animation: fadeIn 2s ease-in forwards;
 }
 
-@keyframes slideUp {
-  from {
-    transform: translateY(-100%);
-  }
-
-  to {
-    transform: translateX(0%);
-  }
+@font-face {
+  font-family: EditorialNewRegular;
+  src: url('../fonts/EditorialNew-Regular.otf');
 }
 
-.animate-slideUp {
-  animation: slideUp 1s ease-in;
+@font-face {
+  font-family: EditorialNewUltraboldItalic;
+  font-style: italic;
+  src: url('../fonts/EditorialNew-Ultrabolditalic.otf');
+}
+
+@font-face {
+  font-family: NeueMachinaRegular;
+  src: url("../fonts/NeueMachina-Regular.otf");
+}
+
+@font-face {
+  font-family: NeueMachinaBold;
+  src: url("../fonts/NeueMachina-Ultrabold.otf");
+}
+
+@font-face {
+  font-family: BebasNeueProRegular;
+  src: url('../fonts/Bebas-Neue-Pro-Regular.ttf');
+}
+
+@font-face {
+  font-family: BebasNeueProBold;
+  src: url('../fonts/Bebas-Neue-Pro-Bold.ttf');
 }

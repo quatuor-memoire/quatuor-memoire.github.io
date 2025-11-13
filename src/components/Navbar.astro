@@ -11,21 +11,49 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
   x-data="{ open: false }"
   class="flex items-center justify-between w-full px-11 py-4 text-white transition-all duration-300 backdrop-blur-xs"
 >
-  <div class="text-6xl">Quatuor Mémoire</div>
+  <div class="text-6xl font-[NeueMachinaRegular]">Quatuor Mémoire</div>
 
-  <ul class="hidden md:flex gap-6 items-center text-lg">
+  <ul class="hidden md:flex gap-6 items-center text-lg font-[NeueMachinaRegular]">
     <li>
       <a
-        href={getRelativeLocaleUrl(currentLocale)}
+        href={`${getRelativeLocaleUrl(currentLocale)}#about`}
         class:list={[{ 'font-bold': page === 'about' }]}
       >
         About
       </a>
     </li>
-    <li><a href={getRelativeLocaleUrl(currentLocale, 'calendar')}>Calendar</a></li>
-    <li><a href={getRelativeLocaleUrl(currentLocale, 'media')}>Media</a></li>
-    <li><a href={getRelativeLocaleUrl(currentLocale, 'press-kit')}>Press Kit</a></li>
-    <li><a href={getRelativeLocaleUrl(currentLocale, 'contact')}>Contact</a></li>
+    <li>
+      <a 
+        href={getRelativeLocaleUrl(currentLocale, 'calendar')}
+        class:list={[{ 'font-bold': page === 'calendar' }]}
+      >
+        Calendar
+      </a>
+    </li>
+    <li>
+      <a 
+        href={getRelativeLocaleUrl(currentLocale, 'media')}
+        class:list={[{ 'font-bold': page === 'media' }]}
+      >
+        Media
+      </a>
+    </li>
+    <li>
+      <a
+        href={getRelativeLocaleUrl(currentLocale, 'press-kit')}
+        class:list={[{ 'font-bold': page === 'press-kit' }]}
+      >
+        Press Kit
+      </a>
+    </li>
+    <li>
+      <a
+        href={getRelativeLocaleUrl(currentLocale, 'contact')}
+        class:list={[{ 'font-bold': page === 'contact' }]}
+      >
+        Contact
+      </a>
+    </li>
     <LanguagePicker />
   </ul>
 

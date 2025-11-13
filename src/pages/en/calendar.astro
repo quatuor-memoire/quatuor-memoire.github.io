@@ -1,8 +1,39 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
+import Event from "../../components/Event.astro";
+
+const events = [
+  {
+    date: "November 22, 2025",
+    info: "Doors: 6 p.m. Music: 7 p.m. Album launch: Mémoire x Mnémosyne",
+    address:
+      "Sanctuaire du Saint-Sacrement 500 Mont-Royal Ave. East Montreal, QC H2J 1W5",
+    tickets:
+      "https://laruchequebec.com/fr/projets/lancement-memoire-x-mnemosyne",
+  },
+];
+
+const x = [1, 2, 3, 4];
 ---
 
 <BaseLayout title="Calendar">
-  <Navbar locale="en" page="calenar" />
+  <Navbar locale="en" page="calendar" />
+  <div class="flex flex-col justify-center items-center">
+    <div class="text-5xl font-[NeueMachinaRegular] text-white mt-10">
+      Upcoming Events
+    </div>
+    <div class="flex flex-col">
+      {
+        events.map((event) => (
+          <Event
+            date={event.date}
+            info={event.info}
+            address={event.address}
+            tickets={event.tickets}
+          />
+        ))
+      }
+    </div>
+  </div>
 </BaseLayout>

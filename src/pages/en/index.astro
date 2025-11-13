@@ -68,7 +68,7 @@ const bios = [
       x-intersect:enter="fadeBg = false"
     >
       <h1
-        class="absolute inset-0 flex items-center justify-center text-center text-white text-9xl sm:text-8xl lg:text-9xl animate-fadeIn will-change-transform transition-transform duration-300 ease-out"
+        class="absolute inset-0 flex items-center justify-center text-center text-white text-9xl text-shadow-white text-shadow-lg font-[NeueMachinaRegular] sm:text-8xl lg:text-9xl animate-fadeIn will-change-transform transition-transform duration-300 ease-out"
         :style="`transform: translateY(${smoothY * -0.05}px)`"
       >
         Quatuor Mémoire
@@ -78,15 +78,18 @@ const bios = [
     <section
       class="relative z-10 flex justify-center items-center min-h-[50vh] w-full overflow-hidden"
       x-intersect="fadeBg = true"
+      id="about"
     >
       <div class="flex flex-col gap-1">
-        <div class="flex text-4xl justify-center items-center text-white">
+        <div
+          class="flex text-4xl justify-center items-center text-white font-[NeueMachinaRegular]"
+        >
           About Quatuor Mémoire
         </div>
         <div class="border-2 border-white w-56 h-1"></div>
       </div>
       <div
-        class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
+        class="flex flex-row w-11/12 gap-4 items-center justify-between max-md:flex-col max-md:gap-10"
       >
         <div
           class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
@@ -100,10 +103,10 @@ const bios = [
         </div>
 
         <div
-          class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 h-fit leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-lg text-white text-right">
+          <p class="text-2xl text-white text-right font-[BebasNeueProRegular]">
             Quatuor Mémoire is a Montréal-based string quartet dedicated to
             contemporary music. Formed in 2024, the ensemble includes Bailey
             Wantuch and Meggie Lacombe (violins), Marilou Lepage (viola), and
@@ -124,10 +127,10 @@ const bios = [
         class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
       >
         <div
-          class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-lg text-white text-left">
+          <p class="text-2xl font-[BebasNeueProRegular] text-white text-left">
             Since its founding, Mémoire has launched numerous creative projects,
             including appearances at the 8th and 9th editions of Vivier
             InterUniversitaire and a concert produced by Collectif Radiance
@@ -170,10 +173,10 @@ const bios = [
         </div>
 
         <div
-          class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-lg text-white text-right">
+          <p class="text-2xl font-[BebasNeueProRegular] text-white text-right">
             In addition to new music, Mémoire has explored Canadian works from
             the 20th century, including quartets by Jean Coulthard, Serge
             Garant, and John Weinzweig. Notably, they gave the first full
@@ -192,10 +195,10 @@ const bios = [
         class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
       >
         <div
-          class="w-1/2 text-black text-lg leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-lg text-white text-left">
+          <p class="text-2xl font-[BebasNeueProRegular] text-white text-left">
             Highlights of the 2025-2026 season include a co-production with No
             Hay Banda to present two new works for quartet and soprano by Lily
             Koslow and Hannah A. Barnes, and the premiere of Olivier St-Pierre’s
@@ -224,7 +227,9 @@ const bios = [
       class="relative z-10 w-full py-20 overflow-x-auto flex justify-center items-center gap-2"
     >
       <div class="flex flex-col gap-1">
-        <div class="flex text-4xl justify-center items-center text-white">
+        <div
+          class="flex text-4xl font-[NeueMachinaRegular] justify-center items-center text-white"
+        >
           The Ensemble
         </div>
         <div class="border-2 border-white w-full h-1"></div>
@@ -246,11 +251,13 @@ const bios = [
             class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
-            <div class="text-white overflow-y-auto max-h-full text-center">
+            <div
+              class="text-white text-lg font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+            >
               {
                 bios[0].split("\n").map((line) => (
                   <>
-                    <p class="text-sm">{line}</p>
+                    <p>{line}</p>
                     <br />
                   </>
                 ))
@@ -274,11 +281,13 @@ const bios = [
             class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
-            <div class="text-white overflow-y-auto max-h-full text-center">
+            <div
+              class="text-white text-lg font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+            >
               {
                 bios[1].split("\n").map((line) => (
                   <>
-                    <p class="text-sm">{line}</p>
+                    <p>{line}</p>
                     <br />
                   </>
                 ))
@@ -302,11 +311,13 @@ const bios = [
             class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
-            <div class="text-white overflow-y-auto max-h-full text-center">
+            <div
+              class="text-white text-lg font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+            >
               {
                 bios[2].split("\n").map((line) => (
                   <>
-                    <p class="text-sm">{line}</p>
+                    <p>{line}</p>
                     <br />
                   </>
                 ))
@@ -330,11 +341,13 @@ const bios = [
             class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
-            <div class="text-white overflow-y-auto max-h-full text-center">
+            <div
+              class="text-white text-lg font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+            >
               {
                 bios[3].split("\n").map((line) => (
                   <>
-                    <p class="text-sm">{line}</p>
+                    <p>{line}</p>
                     <br />
                   </>
                 ))

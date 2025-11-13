@@ -1,11 +1,13 @@
 ---
 import Navbar from "../../components/Navbar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Facebook from ".././../photos/facebook.svg";
+import Instagram from ".././../photos/instagram.svg";
 ---
 
 <BaseLayout title="Contact Us">
   <Navbar page="contact" locale="en" />
-  <div class="flex justify-center items-center mt-10 text-base">
+  <div class="flex flex-col justify-center items-center mt-10 text-xl">
     <form
       action="https://api.web3forms.com/submit"
       method="POST"
@@ -16,28 +18,28 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         name="access_key"
         value="c06b9c47-bc59-413c-914d-5534c6802cb1"
       />
-      <div>
+      <div class="font-[BebasNeueProRegular]">
         <label for="name">Name</label>
         <input
           type="text"
           name="name"
-          class="border-2 bg-[#7c4118]/30 w-2xl h-fit text-lg p-2 rounded-3xl"
+          class="border-2 bg-[#7c4118]/30 w-2xl max-sm:w-3xs h-fit text-lg p-2 rounded-3xl"
           required
         />
       </div>
-      <div>
+      <div class="font-[BebasNeueProRegular]">
         <label for="email">Email</label>
         <input
           type="email"
           name="email"
-          class="border-2 bg-[#7c4118]/30 w-2xl h-fit text-lg p-2 rounded-3xl"
+          class="border-2 bg-[#7c4118]/30 w-2xl max-sm:w-3xs h-fit text-lg p-2 rounded-3xl"
           required
         />
       </div>
       <textarea
         name="message"
         placeholder="Reach out ot us here!"
-        class="border-2 ml-10 bg-[#7c4118]/30 w-[50vw] h-[calc(100vh/3)] text-lg p-2 rounded-3xl"
+        class="border-2 ml-10 bg-[#7c4118]/30 w-2xl max-sm:w-3xs h-[calc(100vh/3)] text-lg p-2 rounded-3xl font-[BebasNeueProRegular]"
         required></textarea>
       <button
         type="submit"
@@ -45,5 +47,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         >Submit</button
       >
     </form>
+    <div class="mt-16">
+      <div class="text-4xl font-[NeueMachinaRegular]">
+        Follow us on social media
+      </div>
+      <!-- <div class="border-2 h-1 w-96"></div> -->
+    </div>
+
+    <div class="flex flex-row gap-6 mt-6">
+      <div>
+        <Facebook class="w-24 h-auto" />
+      </div>
+      <div>
+        <Instagram class="w-24 h-auto" />
+      </div>
+    </div>
   </div>
 </BaseLayout>
