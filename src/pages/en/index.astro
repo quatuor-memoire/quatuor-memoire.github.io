@@ -22,6 +22,13 @@ const bios = [
   "Originally from Québec City, violist Marilou Lepage began her musical studies on the violin at the Conservatoire de musique de Québec, in the class of Julie Cossette. At 19, she moved to Montréal to continue her studies at UQAM, where she completed a Bachelor’s degree in performance (viola) under Frédéric Lambert. She then earned both a Graduate Diploma and a Master’s degree in Performance in the class of André Roy at McGill University’s Schulich School of Music.\nMarilou has had the opportunity to perform with numerous ensembles on the classical scene in Montréal and Québec, including the Orchestre symphonique de Montréal, Orchestre de l’Agora, Ensemble Obiora, Orchestre symphonique de Québec, Orchestre symphonique de Drummondville, Orchestre symphonique de Sherbrooke, the Orchestre Philharmonique et Chœur des Mélomanes, and the Ensemble Urbain.\nAlso active on Montreal’s the pop scene, she has had the opportunity to perform on stage with Simon Leoza (Montreal International Jazz Festival in 2021, ADISQ Gala) and Ambre Ciel (Francouvertes 2021 final), recordings for numerous projects (Moment Factory, Fuudge, Barrdo, Oli Laroche, Cédrik St-Onge, Karolan Boily, etc.), and participate in major television shows such as En Direct de l'Univers, Rallumer les étoiles, Star Académie, and La Voix. On stage, she has performed with dear ciminals, the Hémisphère project in collaboration with Projet Sanctuaire, and in the musical The Sound of Music (2022-2023).\nAs a chamber musician, Marilou joined the Cobalt Quartet during at Domaine Forget, took part in recordings of works by composer Philippe Paquet, joined collectif9 for numerous concerts, and is a founding member of Duo Nova, a violin-viola duet formed in 2021 with violinist Camille Poirier-Lachance.\nMarilou has been a member of the Quatuor Mémoire since 2024, giving her the opportunity to contribute to a mission that deeply inspires her: the democratization of new music, its techniques, and its contemporary composers.",
   "Audréanne Filion is a Montreal-based cellist, multi-instrumentalist, composer, and improviser recognized for her work in contemporary and experimental music.\nShe has premiered numerous works by composers including Sarah Davachi, Martin Arnold, Takuto Fukuda, Geneviève Ackerman, Jean Décarie, Simon Martin, Michael Maevsky, and many others. She is a member of Ensemble Éclat, Quatuor Mémoire, Ensemble Tesse, and Ensemble SuperMusique, and collaborates regularly with chamber ensembles and projects such as No Hay Banda, Projections Libérantes, Novarumori, Chants Libres, Quatuor Bozzini, and Opéra de Montréal.\nAs a composer-performer, Audréanne pursues a solo practice combining electroacoustic composition and cello improvisation, exploring the hybridization of instrumental and electronic languages, ambient and noise textures, and classical and experimental approaches. Her work investigates microtonality and timbral phenomena such as beating, distortion, and feedback, while engaging with themes of information saturation, aesthetic duality, and the contradictory impulses between beauty and destruction. Her music has been presented at Gaudeamus Muziekweek 2025, Festival CHIII, Soundwich, Totem Électrique XV, Interzone Editions, SAT, Codes d’Accès, Vivier InterUniversitaire, Midfield 02 and others.\nActive in the experimental pop scene, she performs with groups including Everly Lux, Jeanne Laforest and Xela Edna, and collaborates frequently with electronic musicians such as YlangYlang, Jessica Moss, Kid Koala, Erika Angell, and Myriam Bleau. Her musical endeavors have taken her to Canada, the United States, the United Arab Emirates, France, the Netherlands, Germany, and Brazil.\nAudréanne was trained at the Conservatoire de musique de Montréal, where she earned a Bachelor's degree and an Artist Diploma in cello performance (Denis Brott and Elizabeth Dolin), as well as a Bachelor's degree in electroacoustic composition (Louis Dufort and Martin Bédard).",
 ];
+
+const descriptions = [
+  "Quatuor Mémoire is a Montréal-based string quartet dedicated to contemporary music. Formed in 2024, the ensemble includes Bailey Wantuch and Meggie Lacombe (violins), Marilou Lepage (viola), and Audréanne Filion (cello), graduates of the Conservatoire de musique de Montréal and the Schulich School of Music at McGill University. Their name reflects their mission: to contribute to the formation of collective memory through the creation and dissemination of today’s repertoire.",
+  "Since its founding, Mémoire has launched numerous creative projects, including appearances at the 8th and 9th editions of Vivier InterUniversitaire and a concert produced by Collectif Radiance featuring new works by Florence Tremblay, Louis-Michel Tougas, and Olivier St-Pierre. These works appear on the quartet’s debut album, Chronos, Kaïros et Aiôn, scheduled for release on the label Mnémosyne in November 2025. Mémoire also participated in the “4:4 Project,” a co-production between Montréal Nouvelles Musiques 2025 and INIS (Institut national de l'image et du son).",
+  "In addition to new music, Mémoire has explored Canadian works from the 20th century, including quartets by Jean Coulthard, Serge Garant, and John Weinzweig. Notably, they gave the first full performance of Serge Garant’s Trois pièces pour quatuor à cordes (1958).",
+  "Highlights of the 2025-2026 season include a co-production with No Hay Banda to present two new works for quartet and soprano by Lily Koslow and Hannah A. Barnes, and the premiere of Olivier St-Pierre’s concerto for string quartet alongside Ensemble Éclat as part of the SMCQ’s 60th-anniversary season. The quartet will also give workshops for student composers at McGill University and participate in a series of workshops around contemporary music creation in partnership with the Chapelle historique du Bon-Pasteur and composer Francis Battah.",
+];
 ---
 
 <BaseLayout title="Quatuor Mémoire">
@@ -49,8 +56,12 @@ const bios = [
     </div>
 
     <div
-      class="fixed top-0 left-0 w-screen min-h-[200vh] bg-linear-to-r from-[#23303d] via-[#e4d1bf] to-[#7c4118]
-                 transition-opacity duration-1000 pointer-events-none will-change-transform"
+      class="fixed top-0 left-0 w-screen min-h-[200vh]"
+      style="background: conic-gradient(at bottom left, #57534e, #a8a29e, #e7e5e4);"
+      transition-opacity
+      duration-1000
+      pointer-events-none
+      will-change-transform"
       :class="{ 'opacity-100': fadeBg, 'opacity-0': !fadeBg }"
       :style="`transform: translateY(${smoothY * -0.1}px)`"
     >
@@ -106,16 +117,11 @@ const bios = [
           class="w-2/5 h-fit leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-2xl text-white text-right font-[BebasNeueProRegular]">
-            Quatuor Mémoire is a Montréal-based string quartet dedicated to
-            contemporary music. Formed in 2024, the ensemble includes Bailey
-            Wantuch and Meggie Lacombe (violins), Marilou Lepage (viola), and
-            Audréanne Filion (cello), graduates of the Conservatoire de musique
-            de Montréal and the Schulich School of Music at McGill University.
-            Their name reflects their mission: to contribute to the formation of
-            collective memory through the creation and dissemination of today’s
-            repertoire.
-          </p>
+          <div
+            class="text-2xl text-white text-right font-[BebasNeueProRegular]"
+          >
+            {descriptions[0].split("\n").map((par) => <p>{par}</p>)}
+          </div>
         </div>
       </div>
     </section>
@@ -130,17 +136,9 @@ const bios = [
           class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-2xl font-[BebasNeueProRegular] text-white text-left">
-            Since its founding, Mémoire has launched numerous creative projects,
-            including appearances at the 8th and 9th editions of Vivier
-            InterUniversitaire and a concert produced by Collectif Radiance
-            featuring new works by Florence Tremblay, Louis-Michel Tougas, and
-            Olivier St-Pierre. These works appear on the quartet’s debut album,
-            Chronos, Kaïros et Aiôn, scheduled for release on the label
-            Mnémosyne in November 2025. Mémoire also participated in the “4:4
-            Project,” a co-production between Montréal Nouvelles Musiques 2025
-            and INIS (Institut national de l'image et du son).
-          </p>
+          <div class="text-2xl text-white text-left font-[BebasNeueProRegular]">
+            {descriptions[1].split("\n").map((par) => <p>{par}</p>)}
+          </div>
         </div>
         <div
           class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
@@ -176,13 +174,11 @@ const bios = [
           class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-2xl font-[BebasNeueProRegular] text-white text-right">
-            In addition to new music, Mémoire has explored Canadian works from
-            the 20th century, including quartets by Jean Coulthard, Serge
-            Garant, and John Weinzweig. Notably, they gave the first full
-            performance of Serge Garant’s Trois pièces pour quatuor à cordes
-            (1958).
-          </p>
+          <div
+            class="text-2xl text-white text-right font-[BebasNeueProRegular]"
+          >
+            {descriptions[2].split("\n").map((par) => <p>{par}</p>)}
+          </div>
         </div>
       </div>
     </section>
@@ -198,17 +194,9 @@ const bios = [
           class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <p class="text-2xl font-[BebasNeueProRegular] text-white text-left">
-            Highlights of the 2025-2026 season include a co-production with No
-            Hay Banda to present two new works for quartet and soprano by Lily
-            Koslow and Hannah A. Barnes, and the premiere of Olivier St-Pierre’s
-            concerto for string quartet alongside Ensemble Éclat as part of the
-            SMCQ’s 60th-anniversary season. The quartet will also give workshops
-            for student composers at McGill University and participate in a
-            series of workshops around contemporary music creation in
-            partnership with the Chapelle historique du Bon-Pasteur and composer
-            Francis Battah.
-          </p>
+          <div class="text-2xl text-white text-left font-[BebasNeueProRegular]">
+            {descriptions[3].split("\n").map((par) => <p>{par}</p>)}
+          </div>
         </div>
 
         <div
