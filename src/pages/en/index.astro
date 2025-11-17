@@ -79,7 +79,7 @@ const descriptions = [
       x-intersect:enter="fadeBg = false"
     >
       <h1
-        class="absolute inset-0 flex items-center justify-center text-center text-white text-9xl text-shadow-white text-shadow-lg font-[NeueMachinaRegular] sm:text-8xl lg:text-9xl animate-fadeIn will-change-transform transition-transform duration-300 ease-out"
+        class="absolute inset-0 flex items-center justify-center text-center text-white text-9xl text-shadow-white text-shadow-lg font-[NeueMachinaRegular] sm:text-8xl lg:text-9xl animate-fadeIn will-change-transform transition-transform duration-300 ease-out max-sm:text-5xl max-sm:text-wrap"
         :style="`transform: translateY(${smoothY * -0.05}px)`"
       >
         Quatuor Mémoire
@@ -91,19 +91,19 @@ const descriptions = [
       x-intersect="fadeBg = true"
       id="about"
     >
-      <div class="flex flex-col gap-1">
-        <div
-          class="flex text-4xl justify-center items-center text-white font-[NeueMachinaRegular]"
-        >
-          About Quatuor Mémoire
-        </div>
-        <div class="border-2 border-white w-56 h-1"></div>
-      </div>
       <div
-        class="flex flex-row w-11/12 gap-4 items-center justify-between max-md:flex-col max-md:gap-10"
+        class="flex flex-row gap-4 items-center justify-between max-sm:flex-col max-sm:gap-14"
       >
+        <div class="flex flex-col gap-1">
+          <div
+            class="flex text-4xl justify-center items-center text-wrap w-[400px] text-white font-[NeueMachinaRegular]"
+          >
+            About Quatuor Mémoire
+          </div>
+          <div class="border-2 border-white w-56 h-1"></div>
+        </div>
         <div
-          class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
+          class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
@@ -112,13 +112,12 @@ const descriptions = [
             class="rounded-xl shadow-lg w-full h-auto"
           />
         </div>
-
         <div
-          class="w-2/5 h-fit leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 max-sm:w-full h-fit leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <div
-            class="text-2xl text-white text-right font-[BebasNeueProRegular]"
+            class="text-2xl text-white text-right font-[BebasNeueProRegular] max-sm:text-center max-sm:w-full max-sm:h-fit"
           >
             {descriptions[0].split("\n").map((par) => <p>{par}</p>)}
           </div>
@@ -130,18 +129,20 @@ const descriptions = [
       x-intersect="fadeBg = true"
     >
       <div
-        class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
+        class="flex flex-row gap-10 items-center justify-between max-sm:flex-col-reverse max-sm:gap-14"
       >
         <div
-          class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 max-sm:w-full leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <div class="text-2xl text-white text-left font-[BebasNeueProRegular]">
+          <div
+            class="text-2xl text-white text-left max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular]"
+          >
             {descriptions[1].split("\n").map((par) => <p>{par}</p>)}
           </div>
         </div>
         <div
-          class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
+          class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
@@ -157,10 +158,10 @@ const descriptions = [
       x-intersect="fadeBg = true"
     >
       <div
-        class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
+        class="flex flex-row gap-10 items-center justify-between max-sm:flex-col max-sm:gap-14"
       >
         <div
-          class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
+          class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
@@ -171,11 +172,11 @@ const descriptions = [
         </div>
 
         <div
-          class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 max-sm:w-full leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <div
-            class="text-2xl text-white text-right font-[BebasNeueProRegular]"
+            class="text-2xl text-white text-right max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular]"
           >
             {descriptions[2].split("\n").map((par) => <p>{par}</p>)}
           </div>
@@ -188,19 +189,21 @@ const descriptions = [
       x-intersect="fadeBg = true"
     >
       <div
-        class="flex flex-row w-11/12 gap-10 items-center justify-between max-md:flex-col max-md:gap-10"
+        class="flex flex-row gap-10 items-center justify-between max-sm:flex-col-reverse max-sm:gap-14"
       >
         <div
-          class="w-2/5 leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+          class="w-2/5 max-sm:w-full leading-relaxed will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
-          <div class="text-2xl text-white text-left font-[BebasNeueProRegular]">
+          <div
+            class="text-2xl text-white text-left max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular]"
+          >
             {descriptions[3].split("\n").map((par) => <p>{par}</p>)}
           </div>
         </div>
 
         <div
-          class="w-1/2 will-change-transform transition-transform duration-300 ease-out"
+          class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
           :style="`transform: translateY(${smoothY * -0.01}px)`"
         >
           <Image
