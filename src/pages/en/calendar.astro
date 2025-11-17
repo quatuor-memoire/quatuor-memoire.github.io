@@ -12,28 +12,47 @@ const events = [
     tickets:
       "https://laruchequebec.com/fr/projets/lancement-memoire-x-mnemosyne",
   },
+  {
+    date: "January 19, 2026",
+    info: "Quatuor Mémoire with Lily Koslow and Joanna Mieleszko (sopranos), Music by Lily Koslow and Hannah A. Barnes, Presented by No Hay Banda",
+    address: "La Sala Rossa 4848 St Laurent Blvd Montreal, QC H2T 1R5",
+    tickets: "tbd",
+  },
+  {
+    date: "February 20, 2026",
+    info: "Quatuor Mémoire with Ensemble Éclat, Concerto for string quartet by Olivier St-Pierre",
+    address:
+      "Salle Pierre-Mercure 300 Boul. de Maisonneuve Est Montreal, QC H2X 3J8",
+    tickets: "tbd",
+  },
+  {
+    date: "April or May 2026",
+    info: "Concert at the Chapelle historique du Bon-Pasteur, music by Francis Battah",
+  },
 ];
-
-const x = [1, 2, 3, 4];
 ---
 
 <BaseLayout title="Calendar">
   <Navbar locale="en" page="calendar" />
-  <div class="flex flex-col justify-center items-center">
-    <div class="text-5xl font-[NeueMachinaRegular] text-white mt-10">
-      Upcoming Events
-    </div>
-    <div class="flex flex-col">
-      {
-        events.map((event) => (
-          <Event
-            date={event.date}
-            info={event.info}
-            address={event.address}
-            tickets={event.tickets}
-          />
-        ))
-      }
+  <div class="h-screen w-screen overflow-y-hidden overflow-x-hidden">
+    <div
+      class="flex flex-col gap-4 justify-center items-center mr-60 max-sm:mr-0"
+    >
+      <div class="text-5xl font-[NeueMachinaRegular] text-white mt-10">
+        Upcoming Events
+      </div>
+      <div class="flex flex-col items-start justify-center gap-6 max-w-2xl">
+        {
+          events.map((event) => (
+            <Event
+              date={event.date}
+              info={event.info}
+              address={event.address}
+              tickets={event.tickets}
+            />
+          ))
+        }
+      </div>
     </div>
   </div>
 </BaseLayout>
