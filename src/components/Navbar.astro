@@ -40,8 +40,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a
-        href={getRelativeLocaleUrl(currentLocale, 'press-kit')}
-        class:list={[{ 'font-bold': page === 'press-kit' }]}
+        href="https://drive.google.com/drive/folders/1AvERT-nCX6IuwQJze5NY0PcTaD6-cKuQ?usp=share_link"
       >
         Press Kit
       </a>
@@ -122,7 +121,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
             <a href={getRelativeLocaleUrl(currentLocale, "media")}>Média</a>
           </li>
           <li>
-            <a href={getRelativeLocaleUrl(currentLocale, "press-kit")}>
+            <a href="https://drive.google.com/drive/folders/1AvERT-nCX6IuwQJze5NY0PcTaD6-cKuQ?usp=share_link">
               Dossier de Presse
             </a>
           </li>
