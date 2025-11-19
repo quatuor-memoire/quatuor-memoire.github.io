@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Evenement from "../../components/Event.astro";
+
+const events = [
+  {
+    date: "Le 22 novembre 2025",
+    info: "Portes/Doors: 18h, Musique: 19h, Lancement d’album: Mémoire x Mnémosyne",
+    address:
+      "Sanctuaire du Saint-Sacrement 500, av. du Mont-Royal Est Montréal (Qc) H2J 1W5",
+    tickets:
+      "https://laruchequebec.com/fr/projets/lancement-memoire-x-mnemosyne",
+  },
+  {
+    date: "Le 19 janvier 2026",
+    info: "Quatuor Mémoire avec Lily Koslow et Joanna Mieleszko (sopranos), Musique de Lily Koslow et Hannah A. Barnes, Présenté par No Hay Banda",
+    address: "La Sala Rossa 4848 St Laurent Blvd Montreal, QC H2T 1R5",
+    tickets: "tbd",
+  },
+  {
+    date: "Le 20 février 2026",
+    info: "Quatuor Mémoire avec Ensemble Éclat, Concerto pour quatuor à cordes de Olivier St-Pierre",
+    address:
+      "Salle Pierre-Mercure 300 Boul. de Maisonneuve Est Montreal, QC H2X 3J8",
+    tickets: "tbd",
+  },
+  {
+    date: "Le 17 Avril 2026",
+    info: "Concert à la Chapelle musicale du Bon-Pasteur, création de Francis Battah",
+  },
+];
+---
+
+<BaseLayout title="Calendar">
+  <Navbar locale="en" page="calendar" />
+  <div class="h-screen w-auto">
+    <div class="flex flex-col gap-4 justify-center items-center max-sm:mr-0">
+      <div class="flex flex-col gap-1">
+        <div class="text-5xl font-[NeueMachinaRegular] text-white mt-10">
+          Événements à venir
+        </div>
+        <div class="border-2 border-white h-1 w-sm"></div>
+      </div>
+      <div
+        class="flex flex-col items-start justify-center gap-6 max-w-2xl mt-8"
+      >
+        {
+          events.map((event) => (
+            <Evenement
+              date={event.date}
+              info={event.info}
+              address={event.address}
+              tickets={event.tickets}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>

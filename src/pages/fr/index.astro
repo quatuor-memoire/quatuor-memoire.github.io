@@ -1,8 +1,349 @@
 ---
-import Navbar from "../../components/Navbar.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import { Image } from "astro:assets";
+import EB_Quator_Memoire_1 from "../../photos/EB_Quatuor_Memoire_1.jpg";
+import EB_Quator_Memoire_2 from "../../photos/EB_Quatuor_Memoire_2.jpg";
+import EB_Quator_Memoire_3 from "../../photos/EB_Quatuor_Memoire_3.jpg";
+import EB_Quator_Memoire_5 from "../../photos/EB_Quatuor_Memoire_5.jpg";
+import Portrait_Audreanne from "../../photos/Portrait_Audréanne.jpg";
+import Portrait_Bailey from "../../photos/Portrait_Bailey.jpg";
+import Portrait_Marilou from "../../photos/Portrait_Marilou.jpg";
+import Portrait_Meggie from "../../photos/Portrait_Meggie.jpg";
+
+const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
+
+const descriptions = [
+	"Le Quatuor Mémoire est un quatuor à cordes montréalais dédié à la musique contemporaine. Ayant pris jour en 2024, l’ensemble est formé de Bailey Wantuch, Meggie Lacombe (violons), Marilou Lepage (alto) et Audréanne Filion (violoncelle) issues du Conservatoire de musique de Montréal et de l’École de musique Schulich de l’Université McGill.  Leur nom fait écho à leur mission: participer à la mémoire collective par la création et diffusion du répertoire d’aujourd’hui.",
+	"Depuis sa fondation, Mémoire a déjà multiplié les projets, nommons leur participation aux 8e et 9e éditions du Vivier InterUniversitaire ainsi qu’un concert produit par le Collectif Radiance mettant en valeur des créations de Florence Tremblay, Louis-Michel Tougas et Olivier St-Pierre. Ces œuvres figurent sur le premier album du quatuor, Chronos, Kaïros et Aiôn, prévu pour Novembre 2025 sur le label Mnémosyne. Elles ont également participé au Projet « 4:4 » dans le cadre d’une coproduction du festival Montréal Nouvelles Musiques 2025 et de l’INIS (Institut national de l'image et du son).",
+	"Mémoire s’est également aventuré dans le répertoire canadien majeur du XXe siècle, notamment avec des quatuors de Jean Coulthard, Serge Garant et John Weinzweig. Le quatuor a d’ailleurs donné la première interprétation intégrale de Trois pièces pour quatuor à cordes (1958) de Serge Garant.",
+	"​​Les faits saillants de la saison 2025-2026 incluent une coproduction avec No Hay Banda présentant deux nouvelles œuvres pour quatuor et soprano de Lily Koslow et Hannah A. Barnes, ainsi que la création du concerto pour quatuor à cordes d’Olivier St-Pierre, interprété aux côtés de l’Ensemble Éclat dans le cadre de la 60e saison anniversaire de la SMCQ. Le quatuor offrira également des ateliers pour les compositeurs étudiants de l’Université McGill et participera à une série d’ateliers autour de la création musicale contemporaine, en partenariat avec la Chapelle historique du Bon-Pasteur et le compositeur Francis Battah.",
+];
+
+const bios = [
+	"La violoniste Bailey Wantuch est spécialisée en musique contemporaine et du XXe siècle. Établie à Montréal, elle est cofondatrice des ensembles de musique nouvelle Collectif Radiance et Quatuor Mémoire. Récemment, elle s'est produite comme soliste avec le McGill University Contemporary Music Ensemble, interprétant le concerto pour violon Graal Théâtre de Kaija Saariaho. Parmi ses engagements notables figurent des concerts avec l’ensemble Paramirabo et le concert d'ouverture du Festival Ligeti de Montréal. Collaboratrice engagée, elle travaille en étroite collaboration avec des compositeurs locaux ainsi qu'à des festivals tels que soundSCAPE, Fresh Inc et la Composers Conference. Elle a également été professeure lors du stage de musique nouvelle de l’Académie du Domaine Forget.\nChambriste active, Bailey s’est produite à l’international. Son trio avec piano, le Trio Miltenberg, s'est produit au Québec, en Allemagne, et a récemment effectué une tournée à Terre-Neuve. Elle a également joué avec le Quatuor Æternum aux Pays-Bas, dans le cadre de séries telles que Muziekkamer Assen. En tant que violoniste du Quatuor Mémoire, elle s’est produite au Festival Montréal/Nouvelles Musiques 2025 et à Québec musiques parallèles. Le premier album du quatuor, qui comprend des œuvres de Florence Tremblay, Louis-Michel Tougas et Olivier St-Pierre, sera publié à l’automne 2025 sous l’étiquette Mnémosyne.\nBailey a obtenu son baccalauréat en musique à l’Université Northwestern (sous la direction de Blair Milton) et sa maîtrise en musique à l’Université McGill (sous la direction de Violaine Melançon). Actuellement doctorante en interprétation musicale à l'Université McGill, elle est bénéficiaire d’une bourse du Fonds de recherche du Québec, qui soutient ses recherches sur la musique du compositeur Nikolaï Roslavets.",
+	"Graduée du Conservatoire de Musique de Montréal (maitrise) de la classe de Johanne Arel ainsi que de l’Université Mcgill (Post-graduate Artist Diploma), Meggie Lacombe est une violoniste reconnue pour sa versatilité.  Se spécialisant dans la musique contemporaine, expérimentale et multidisciplinaire, elle participe régulièrement à la création et performance d’œuvres nouvelles, que ce soit dans le cadre d’évènements d’Akousma, du collectif Radiance ou de la SMCQ.\nEn tant que chambriste, Meggie a participé à l'académie de musique de Chambre du domaine forget où elle a eu la chance de jouer avec Steven Dan et Marc Fewer.  Elle est membre du quatuor Mémoire depuis ses débuts en 2024.\nViolon solo de l’Orchestre Symphonique de la Côte-Nord, elle maîtrise tout autant le jeu orchestral, se produisant également avec l’Orchestre de l’Agora, l’Orchestre de Chambre I Musici, l’Orchestre Symphonique de l’Estuaire et quelques autres orchestres en travers du Québec.\nCherchant à introduire dans sa pratique musicale d’autres disciplines artistiques,  Meggie a fait parallèlement à son parcours au conservatoire des études en dramaturgie et mise en scène à l’UQAM. Cet intérêt l’amena vers une collaboration avec le collectif de l’Éléphante pour le spectacle Hercule et Naïade, théâtre jeunesse qui a été joué près de trente fois en travers le Québec et dont elle signe la conception sonore en plus d’y avoir été interprète.\nSa pratique artistique se caractérise par la recherche d’une musicalité authentique, l’exploration de notre rapport aux paradigmes esthétiques et la recherche d’une pratique au-delà des traditions établies - de là son intérêt pour la musique nouvelle et ses techniques étendues.\nSa pratique artistique se caractérise par la recherche d’une musicalité authentique, l’exploration de notre rapport aux paradigmes esthétiques et la recherche d’une pratique au-delà des traditions établies - de là son intérêt pour la musique nouvelle et ses techniques étendues.",
+	"Originaire de la ville de Québec, Marilou Lepage commence son parcours musical en violon au Conservatoire de musique de Québec, dans la classe de Julie Cossette. Après avoir complété son DEC au Conservatoire, elle déménage à Montréal pour poursuivre ses études à l’UQAM, où elle y termine son Baccalauréat en interprétation, en alto, dans la classe de Frédéric Lambert en 2019. Par la suite, elle poursuit ses études à la l’École de musique Schulich de l’Université McGill, où elle complète un Diplôme d’études supérieures et une Maîtrise en performance dans la classe d’André Roy.\nÀ travers son parcours académique, Marilou a la chance de se produire avec plusieurs ensembles de la scène classique de Montréal et de Québec, tels que l’Orchestre de l’Agora, l’Orchestre Symphonique de Montréal, l’Ensemble Obiora, l’Orchestre symphonique de Québec, l’Orchestre symphonique de Drummondville, l’Orchestre Symphonique de Sherbrooke, l’Orchestre Philharmonique et Chœur des Mélomanes, les productions FilmHarmonique, ainsi que l’Ensemble Urbain.\nÉgalement active sur la scène populaire, elle a eu l’opportunité de jouer sur scène avec Simon Leoza (Festival International de Jazz de Montréal en 2021, Gala de l’ADISQ) et Ambre Ciel (finale des Francouvertes 2021), faire des enregistrements en studio pour de nombreux projets (Moment Factory, Fuudge, Barrdo, Oli Laroche, Cédrik St-Onge, Karolan Boily, etc.) ainsi que de participer à des émissions télévisuelles d’envergure comme En Direct de l’Univers, Rallumer les étoiles, Star Académie et La Voix. Sur scène, on a pu la voir avec dear ciminals, le projet Hémisphère en collaboration avec le Projet Sanctuaire, ainsi que dans la comédie musicale La Mélodie du Bonheur (2022-2023).\nEn tant que chambriste, Marilou s’est jointe au Quatuor Cobalt lors du stage en direction d’orchestre au Domaine Forget, a pris part à des enregistrements des œuvres du compositeur Philippe Paquet, s’est jointe à collectif9 pour de nombreux concerts  et est membre fondatrice du Duo Nova, un duo violon-alto formé en 2021 avec la violoniste Camille Poirier-Lachance.\nMarilou est membre du Quatuor Mémoire depuis 2024, et a ainsi la chance de contribuer à une mission qui l’anime profondément: la démocratisation de la musique nouvelle, de ses techniques et ses compositeurs-trices contemporains-es.",
+	"Audréanne Filion est une violoncelliste, multi-instrumentiste, compositrice et improvisatrice montréalaise reconnue pour son travail dans le milieu des musiques contemporaines et expérimentales.\nElle a créé de nombreuses œuvres de compositeurs incluant Sarah Davachi, Martin Arnold, Takuto Fukuda, Geneviève Ackerman, Jean Décarie, Simon Martin, Michael Maevsky et plusieurs autres. Elle est membre de l'Ensemble Éclat, du Quatuor Mémoire, de l'Ensemble Tesse et de l'Ensemble SuperMusique, et collabore régulièrement avec des ensembles de chambre et projets tels que No Hay Banda, Projections Libérantes, Novarumori, Chants Libres, Quatuor Bozzini et Opéra de Montréal.\nEn tant que compositrice-interprète, Audréanne poursuit une pratique solo combinant composition électroacoustique et improvisation au violoncelle, explorant l'hybridation des langages instrumental et électronique, des textures ambient et noise, ainsi que des approches classique et expérimentale. Son travail investigue la microtonalité et les phénomènes timbraux tels que les battements, la distorsion et les larsens, tout en abordant des thèmes liés à la saturation informationnelle, à la dualité esthétique et aux pulsions contradictoires entre recherche de beauté et aspiration à la destruction. Sa musique a été présentée à Gaudeamus Muziekweek 2025, Festival CHIII, Soundwich, Totem Électrique XV, Interzone Editions, à la SAT, Codes d'Accès, Vivier InterUniversitaire et Midfield 02.\nActive sur la scène pop expérimentale, elle se produit avec des groupes incluant Everly Lux, Jeanne Laforest et Xela Edna, et collabore fréquemment avec des musiciens électroniques tels que YlangYlang, Jessica Moss, Kid Koala, Erika Angell et Myriam Bleau. Ses activités musicales l'ont menée au Canada, aux États-Unis, aux Émirats arabes unis, en France, aux Pays-Bas, en Allemagne et au Brésil.\nAudréanne a été formée au Conservatoire de musique de Montréal, où elle a obtenu un baccalauréat et un diplôme d'artiste en interprétation du violoncelle (Denis Brott et Elizabeth Dolin), ainsi qu'un baccalauréat en composition électroacoustique (Louis Dufort et Martin Bédard).",
+];
 ---
 
-<BaseLayout>
-	<Navbar locale="fr" />
+<BaseLayout title="Quatuor Mémoire">
+	<div
+		x-data="{ 
+      fadeBg: false,
+      showNavbar: false,
+      scrollY: 0,
+      smoothY: 0,
+      init() {        
+        const update = () => {
+          this.smoothY += (this.scrollY - this.smoothY) * 0.1;
+          requestAnimationFrame(update);
+        };
+        update();
+      } 
+    }"
+		x-on:scroll.window="scrollY = window.scrollY; showNavbar = scrollY > window.innerHeight - 650"
+		class="relative overflow-x-hidden overflow-y-auto transition-colors duration-1000"
+	>
+		<div
+			class="fixed inset-0 bg-black transition-opacity duration-1000 pointer-events-none"
+			:class="{ 'opacity-0': fadeBg, 'opacity-100': !fadeBg }"
+		>
+		</div>
+
+		<div
+			class="fixed top-0 left-0 w-screen min-h-[200vh]"
+			style="background: linear-gradient(to bottom left, #44403c, #78716c, #d6d3d1);"
+			transition-opacity
+			duration-1000
+			pointer-events-none
+			will-change-transform"
+			:class="{ 'opacity-100': fadeBg, 'opacity-0': !fadeBg }"
+			:style="`transform: translateY(${smoothY * -0.1}px)`"
+		>
+		</div>
+
+		<div
+			class="fixed top-0 left-0 right-0 w-screen z-40 transition-transform duration-500 -translate-y-full"
+			:class="showNavbar ? 'translate-y-0' : '-translate-y-full'"
+		>
+			<Navbar locale={currentLocale} page="about" />
+		</div>
+
+		<section
+			class="relative z-10 flex items-center justify-center min-h-screen w-full overflow-hidden"
+			x-intersect:enter="fadeBg = false"
+		>
+			<h1
+				class="absolute inset-0 flex items-center justify-center text-center text-white text-9xl text-shadow-white text-shadow-lg font-[NeueMachinaRegular] sm:text-8xl lg:text-9xl animate-fadeIn will-change-transform transition-transform duration-300 ease-out max-sm:text-5xl max-sm:text-wrap"
+				:style="`transform: translateY(${smoothY * -0.05}px)`"
+			>
+				Quatuor Mémoire
+			</h1>
+		</section>
+
+		<section
+			class="relative z-10 flex justify-center items-center min-h-[50vh] w-full overflow-hidden"
+			x-intersect="fadeBg = true"
+			id="about"
+		>
+			<div
+				class="flex flex-row gap-4 items-center justify-between max-sm:flex-col max-sm:gap-14"
+			>
+				<div class="flex flex-col gap-1">
+					<div
+						class="flex text-4xl justify-center items-center text-wrap w-[400px] text-white font-[NeueMachinaRegular]"
+					>
+						À propos du Quatuor Mémoire
+					</div>
+					<div class="border-2 border-white w-56 h-1"></div>
+				</div>
+				<div
+					class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.01}px)`"
+				>
+					<Image
+						src={EB_Quator_Memoire_1}
+						alt="All members of the band at Entrepöt 77 in the Mile End, Montréal"
+						class="rounded-xl shadow-lg w-full h-auto"
+					/>
+				</div>
+				<div
+					class="w-2/5 max-sm:w-full h-fit leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.02}px)`"
+				>
+					<div
+						class="text-2xl text-white text-right font-[BebasNeueProRegular] max-sm:text-center max-sm:w-full max-sm:h-fit"
+					>
+						{descriptions[0].split("\n").map((par) => <p>{par}</p>)}
+					</div>
+				</div>
+			</div>
+		</section>
+		<section
+			class="relative z-10 flex justify-center items-center min-h-[50vh] w-full overflow-hidden"
+			x-intersect="fadeBg = true"
+		>
+			<div
+				class="flex flex-row gap-10 items-center justify-between max-sm:flex-col-reverse max-sm:gap-14"
+			>
+				<div
+					class="w-2/5 max-sm:w-full leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.02}px)`"
+				>
+					<div
+						class="text-2xl text-white text-left max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular]"
+					>
+						{descriptions[1].split("\n").map((par) => <p>{par}</p>)}
+					</div>
+				</div>
+				<div
+					class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.01}px)`"
+				>
+					<Image
+						src={EB_Quator_Memoire_3}
+						alt="All members of the band posing in front of a picnic table."
+						class="rounded-xl shadow-lg w-full h-auto"
+					/>
+				</div>
+			</div>
+		</section>
+		<section
+			class="relative z-10 flex justify-center items-center min-h-[50vh] w-full overflow-hidden"
+			x-intersect="fadeBg = true"
+		>
+			<div
+				class="flex flex-row gap-10 items-center justify-between max-sm:flex-col max-sm:gap-14"
+			>
+				<div
+					class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.01}px)`"
+				>
+					<Image
+						src={EB_Quator_Memoire_2}
+						alt="All members of the band sitting on a concrete bench."
+						class="rounded-xl shadow-lg w-full h-auto"
+					/>
+				</div>
+
+				<div
+					class="w-2/5 max-sm:w-full leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.02}px)`"
+				>
+					<div
+						class="text-2xl text-white text-right max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular]"
+					>
+						{descriptions[2].split("\n").map((par) => <p>{par}</p>)}
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section
+			class="relative z-10 flex justify-center items-center min-h-[50vh] w-full overflow-hidden"
+			x-intersect="fadeBg = true"
+		>
+			<div
+				class="flex flex-row gap-10 items-center justify-between max-sm:flex-col-reverse max-sm:gap-14"
+			>
+				<div
+					class="w-2/5 max-sm:w-full leading-relaxed will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.02}px)`"
+				>
+					<div
+						class="text-2xl text-white text-left max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular]"
+					>
+						{descriptions[3].split("\n").map((par) => <p>{par}</p>)}
+					</div>
+				</div>
+
+				<div
+					class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"
+					:style="`transform: translateY(${smoothY * -0.01}px)`"
+				>
+					<Image
+						src={EB_Quator_Memoire_5}
+						alt="Photo of all members of the band posing in front of a building."
+						class="rounded-lg shadow-lg w-full h-auto"
+					/>
+				</div>
+			</div>
+		</section>
+		<section
+			class="relative z-10 w-full py-20 overflow-x-auto flex justify-center items-center gap-2"
+		>
+			<div class="flex flex-col gap-1">
+				<div
+					class="flex text-4xl font-[NeueMachinaRegular] justify-center items-center text-white"
+				>
+					L'Ensemble
+				</div>
+				<div class="border-2 border-white w-full h-1"></div>
+			</div>
+			<div class="flex space-x-6">
+				<div
+					x-data="{ open: false }"
+					class="relative w-96 h-auto cursor-pointer overflow-hidden rounded-lg shadow-lg max-sm:w-screen"
+					@click="open = !open"
+				>
+					<Image
+						src={Portrait_Bailey}
+						alt="Bailey Wantuch"
+						class="w-full h-full object-cover transition-transform duration-300"
+						:class="{ 'scale-110': open }"
+					/>
+
+					<div
+						class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
+						:class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
+					>
+						<div
+							class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+						>
+							{
+								bios[0].split("\n").map((line) => (
+									<>
+										<p>{line}</p>
+										<br />
+									</>
+								))
+							}
+						</div>
+					</div>
+				</div>
+				<div
+					x-data="{ open: false }"
+					class="relative w-96 h-auto cursor-pointer overflow-hidden rounded-lg shadow-lg"
+					@click="open = !open"
+				>
+					<Image
+						src={Portrait_Marilou}
+						alt="Marilou Lepage"
+						class="w-full h-full object-cover transition-transform duration-300"
+						:class="{ 'scale-110': open }"
+					/>
+
+					<div
+						class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
+						:class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
+					>
+						<div
+							class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+						>
+							{
+								bios[1].split("\n").map((line) => (
+									<>
+										<p>{line}</p>
+										<br />
+									</>
+								))
+							}
+						</div>
+					</div>
+				</div>
+				<div
+					x-data="{ open: false }"
+					class="relative w-96 h-auto cursor-pointer overflow-hidden rounded-lg shadow-lg"
+					@click="open = !open"
+				>
+					<Image
+						src={Portrait_Meggie}
+						alt="Meggie Lacombe"
+						class="w-full h-full object-cover transition-transform duration-300"
+						:class="{ 'scale-110': open }"
+					/>
+
+					<div
+						class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
+						:class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
+					>
+						<div
+							class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+						>
+							{
+								bios[2].split("\n").map((line) => (
+									<>
+										<p>{line}</p>
+										<br />
+									</>
+								))
+							}
+						</div>
+					</div>
+				</div>
+				<div
+					x-data="{ open: false }"
+					class="relative w-96 h-auto cursor-pointer overflow-hidden rounded-lg shadow-lg"
+					@click="open = !open"
+				>
+					<Image
+						src={Portrait_Audreanne}
+						alt="Audréanne Filion"
+						class="w-full h-full object-cover transition-transform duration-300"
+						:class="{ 'scale-110': open }"
+					/>
+
+					<div
+						class="absolute inset-0 bg-black transition-opacity duration-300 flex items-center justify-center p-4"
+						:class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
+					>
+						<div
+							class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+						>
+							{
+								bios[3].split("\n").map((line) => (
+									<>
+										<p>{line}</p>
+										<br />
+									</>
+								))
+							}
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
 </BaseLayout>
