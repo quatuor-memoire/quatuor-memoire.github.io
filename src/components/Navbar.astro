@@ -94,7 +94,7 @@ import LanguagePicker from "./LanguagePicker.astro";
     <a href={getRelativeLocaleUrl(locale, 'media')} @click="open = false">Media</a>
     <a href={getRelativeLocaleUrl(locale, 'press-kit')} @click="open = false">Press Kit</a>
     <a href={getRelativeLocaleUrl(locale, 'contact')} @click="open = false">Contact</a>
-    <LanguagePicker locale={locale} />
+    <LanguagePicker />
   </div>
 </nav>
   )
@@ -148,7 +148,7 @@ import LanguagePicker from "./LanguagePicker.astro";
         Contacter
       </a>
     </li>
-    <LanguagePicker locale={locale} />
+    <LanguagePicker />
   </ul>
 
   <button
@@ -190,7 +190,7 @@ import LanguagePicker from "./LanguagePicker.astro";
     <a href={getRelativeLocaleUrl(locale, 'media')} @click="open = false">Média</a>
     <a href={getRelativeLocaleUrl(locale, 'press-kit')} @click="open = false">Dossier de Presse</a>
     <a href={getRelativeLocaleUrl(locale, 'contact')} @click="open = false">Contacter</a>
-    <LanguagePicker locale={locale} />
+    <LanguagePicker />
   </div>
 </nav>
   )

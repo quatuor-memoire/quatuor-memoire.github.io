@@ -1,13 +1,14 @@
 ---
-const { locale } = Astro.props;
+const pathname = Astro.url.pathname;
+const currentLocale = pathname.startsWith("/en") ? "en" : "fr";
 ---
 
 <div
   x-data={`{
-    locale: '${locale}',
+    locale: '${currentLocale}',
     switchLocale() {
       const path = window.location.pathname;
-      const newLocale = this.locale === 'en' ? 'en' : 'fr';
+      const newLocale = this.locale === 'en' ? 'fr' : 'en';
       let newPath;
 
       if (/^\\/(en|fr)/.test(path)) {
@@ -25,6 +26,6 @@ const { locale } = Astro.props;
     @click="switchLocale()"
     class="px-3 py-1 border-2 border-black rounded bg-gray-100 hover:bg-gray-200 text-black"
   >
-    <span x-text="locale === 'en' ? 'English' : 'Français'"></span>
+    <span x-text="locale === 'en' ? 'Français' : 'English'"></span>
   </button>
 </div>
