@@ -52,12 +52,8 @@ const descriptions = [
     </div>
 
     <div
-      class="fixed top-0 left-0 w-screen min-h-[200vh]"
+      class="fixed top-0 left-0 w-screen min-h-[200vh] transition-opacity duration-1000 pointer-events-none will-change-transform"
       style="background: linear-gradient(to bottom left, #44403c, #78716c, #d6d3d1);"
-      transition-opacity
-      duration-1000
-      pointer-events-none
-      will-change-transform"
       :class="{ 'opacity-100': fadeBg, 'opacity-0': !fadeBg }"
       :style="`transform: translateY(${smoothY * -0.1}px)`"
     >
