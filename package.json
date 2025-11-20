@@ -1,7 +1,7 @@
 {
   "name": "Quatuor Mémoire Website",
   "type": "module",
-  "packageManager": "^pnpm@9.5.0",
+  "packageManager": "pnpm@9.5.0",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
