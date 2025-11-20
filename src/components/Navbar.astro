@@ -73,7 +73,7 @@ import LanguagePicker from "./LanguagePicker.astro";
   ></span>
 </button>
 
-  <div
+ <div
     x-show="open"
     x-transition:enter="transition ease-out duration-300"
     x-transition:enter-start="opacity-0 -translate-y-2"
@@ -81,7 +81,7 @@ import LanguagePicker from "./LanguagePicker.astro";
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 translate-y-0"
     x-transition:leave-end="opacity-0 -translate-y-2"
-    class="absolute top-full left-0 w-full bg-black/80 backdrop-blur-md md:hidden flex flex-col items-center gap-4 py-6 text-lg"
+    class="absolute top-full left-0 w-full bg-black/80 backdrop-blur-md md:hidden flex flex-col items-center gap-4 py-6 text-lg z-50"
   >
     <a
       href={getRelativeLocaleUrl(locale)}
