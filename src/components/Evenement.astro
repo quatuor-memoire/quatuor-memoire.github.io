@@ -5,8 +5,10 @@ let { date, info, address, tickets } = Astro.props;
 <div class="flex justify-center gap-4">
   {
     date && (
-      <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular] rounded-xl border-2 gradient-border">
-        {date}
+      <div class="gradient-border relative rounded-xl">
+        <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular] rounded-xl border-2 gradient-border">
+          {date}
+        </div>
       </div>
     )
   }
