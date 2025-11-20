@@ -6,8 +6,7 @@ import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://itaie01.github.io",
-  base: "/bailey-string-quarter-website-",
+  site: "https://quatuor-memoire.github.io",
   i18n: {
     locales: ["en", "fr"],
     defaultLocale: "en",
