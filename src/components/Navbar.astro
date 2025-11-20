@@ -2,7 +2,6 @@
 let { page, locale } = Astro.props;
 import { getRelativeLocaleUrl } from "astro:i18n";
 import LanguagePicker from "./LanguagePicker.astro";
-const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
 ---
 
 {
@@ -16,7 +15,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
   <ul class="hidden md:flex gap-6 items-center text-lg font-[NeueMachinaRegular]">
     <li>
       <a
-        href={`${getRelativeLocaleUrl(currentLocale)}#about`}
+        href={`${getRelativeLocaleUrl(locale)}#about`}
         class:list={[{ 'font-bold': page === 'about' }]}
       >
         About
@@ -24,7 +23,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a 
-        href={getRelativeLocaleUrl(currentLocale, 'calendar')}
+        href={getRelativeLocaleUrl(locale, 'calendar')}
         class:list={[{ 'font-bold': page === 'calendar' }]}
       >
         Calendar
@@ -32,7 +31,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a 
-        href={getRelativeLocaleUrl(currentLocale, 'media')}
+        href={getRelativeLocaleUrl(locale, 'media')}
         class:list={[{ 'font-bold': page === 'media' }]}
       >
         Media
@@ -47,7 +46,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a
-        href={getRelativeLocaleUrl(currentLocale, 'contact')}
+        href={getRelativeLocaleUrl(locale, 'contact')}
         class:list={[{ 'font-bold': page === 'contact' }]}
       >
         Contact
@@ -85,17 +84,17 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     class="absolute top-full left-0 w-full bg-black/80 backdrop-blur-md md:hidden flex flex-col items-center gap-4 py-6 text-lg"
   >
     <a
-      href={getRelativeLocaleUrl(currentLocale)}
+      href={getRelativeLocaleUrl(locale)}
       class:list={[{ 'font-bold': page === 'about' }]}
       @click="open = false"
     >
       About
     </a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'calendar')} @click="open = false">Calendar</a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'media')} @click="open = false">Media</a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'press-kit')} @click="open = false">Press Kit</a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'contact')} @click="open = false">Contact</a>
-    <LanguagePicker />
+    <a href={getRelativeLocaleUrl(locale, 'calendar')} @click="open = false">Calendar</a>
+    <a href={getRelativeLocaleUrl(locale, 'media')} @click="open = false">Media</a>
+    <a href={getRelativeLocaleUrl(locale, 'press-kit')} @click="open = false">Press Kit</a>
+    <a href={getRelativeLocaleUrl(locale, 'contact')} @click="open = false">Contact</a>
+    <LanguagePicker locale={locale} />
   </div>
 </nav>
   )
@@ -112,7 +111,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
   <ul class="hidden md:flex gap-6 items-center text-lg font-[NeueMachinaRegular]">
     <li>
       <a
-        href={`${getRelativeLocaleUrl(currentLocale)}#about`}
+        href={`${getRelativeLocaleUrl(locale)}#about`}
         class:list={[{ 'font-bold': page === 'about' }]}
       >
         À propos
@@ -120,7 +119,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a 
-        href={getRelativeLocaleUrl(currentLocale, 'calendar')}
+        href={getRelativeLocaleUrl(locale, 'calendar')}
         class:list={[{ 'font-bold': page === 'calendar' }]}
       >
         Calendrier
@@ -128,7 +127,7 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a 
-        href={getRelativeLocaleUrl(currentLocale, 'media')}
+        href={getRelativeLocaleUrl(locale, 'media')}
         class:list={[{ 'font-bold': page === 'media' }]}
       >
         Média
@@ -143,13 +142,13 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     </li>
     <li>
       <a
-        href={getRelativeLocaleUrl(currentLocale, 'contact')}
+        href={getRelativeLocaleUrl(locale, 'contact')}
         class:list={[{ 'font-bold': page === 'contact' }]}
       >
         Contacter
       </a>
     </li>
-    <LanguagePicker />
+    <LanguagePicker locale={locale} />
   </ul>
 
   <button
@@ -181,17 +180,17 @@ const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
     class="absolute top-full left-0 w-full bg-black/80 backdrop-blur-md md:hidden flex flex-col items-center gap-4 py-6 text-lg"
   >
     <a
-      href={getRelativeLocaleUrl(currentLocale)}
+      href={getRelativeLocaleUrl(locale)}
       class:list={[{ 'font-bold': page === 'about' }]}
       @click="open = false"
     >
       À propos
     </a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'calendar')} @click="open = false">Calendrier</a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'media')} @click="open = false">Média</a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'press-kit')} @click="open = false">Dossier de Presse</a>
-    <a href={getRelativeLocaleUrl(currentLocale, 'contact')} @click="open = false">Contacter</a>
-    <LanguagePicker />
+    <a href={getRelativeLocaleUrl(locale, 'calendar')} @click="open = false">Calendrier</a>
+    <a href={getRelativeLocaleUrl(locale, 'media')} @click="open = false">Média</a>
+    <a href={getRelativeLocaleUrl(locale, 'press-kit')} @click="open = false">Dossier de Presse</a>
+    <a href={getRelativeLocaleUrl(locale, 'contact')} @click="open = false">Contacter</a>
+    <LanguagePicker locale={locale} />
   </div>
 </nav>
   )

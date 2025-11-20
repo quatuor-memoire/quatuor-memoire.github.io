@@ -1,11 +1,10 @@
 ---
-const currentPath = Astro.url.pathname;
-const currentLocale = currentPath.startsWith("/en") ? "en" : "fr";
+const { locale } = Astro.props;
 ---
 
 <div
   x-data={`{
-    locale: '${currentLocale}',
+    locale: '${locale}',
     switchLocale() {
       const path = window.location.pathname;
       const newLocale = this.locale === 'en' ? 'fr' : 'en';

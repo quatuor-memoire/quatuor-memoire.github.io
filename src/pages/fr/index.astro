@@ -11,8 +11,6 @@ import Portrait_Bailey from "../../photos/Portrait_Bailey.jpg";
 import Portrait_Marilou from "../../photos/Portrait_Marilou.jpg";
 import Portrait_Meggie from "../../photos/Portrait_Meggie.jpg";
 
-const currentLocale = Astro.url.pathname.startsWith("/en") ? "en" : "fr";
-
 const descriptions = [
 	"Le Quatuor Mémoire est un quatuor à cordes montréalais dédié à la musique contemporaine. Ayant pris jour en 2024, l’ensemble est formé de Bailey Wantuch, Meggie Lacombe (violons), Marilou Lepage (alto) et Audréanne Filion (violoncelle) issues du Conservatoire de musique de Montréal et de l’École de musique Schulich de l’Université McGill.  Leur nom fait écho à leur mission: participer à la mémoire collective par la création et diffusion du répertoire d’aujourd’hui.",
 	"Depuis sa fondation, Mémoire a déjà multiplié les projets, nommons leur participation aux 8e et 9e éditions du Vivier InterUniversitaire ainsi qu’un concert produit par le Collectif Radiance mettant en valeur des créations de Florence Tremblay, Louis-Michel Tougas et Olivier St-Pierre. Ces œuvres figurent sur le premier album du quatuor, Chronos, Kaïros et Aiôn, prévu pour Novembre 2025 sur le label Mnémosyne. Elles ont également participé au Projet « 4:4 » dans le cadre d’une coproduction du festival Montréal Nouvelles Musiques 2025 et de l’INIS (Institut national de l'image et du son).",
@@ -68,7 +66,7 @@ const bios = [
 			class="fixed top-0 left-0 right-0 w-screen z-40 transition-transform duration-500 -translate-y-full"
 			:class="showNavbar ? 'translate-y-0' : '-translate-y-full'"
 		>
-			<Navbar locale={currentLocale} page="about" />
+			<Navbar locale="fr" page="about" />
 		</div>
 
 		<section
