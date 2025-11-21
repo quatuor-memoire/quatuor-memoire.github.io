@@ -6,7 +6,7 @@ import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://quatuor-memoire.github.io",
+  site: "https://www.quatuormemoire.com",
   i18n: {
     locales: ["en", "fr"],
     defaultLocale: "en",
