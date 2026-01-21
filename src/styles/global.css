@@ -54,11 +54,6 @@
 }
 
 @font-face {
-  font-family: BebasNeueProRegular;
-  src: url('../fonts/Bebas-Neue-Pro-Regular.ttf');
-}
-
-@font-face {
-  font-family: BebasNeueProBold;
-  src: url('../fonts/Bebas-Neue-Pro-Bold.ttf');
+  font-family: LibreBaskerville;
+  src: url("../fonts/LibreBaskerville-VariableFont_wght.ttf");
 }
