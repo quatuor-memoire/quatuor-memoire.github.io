@@ -2,8 +2,20 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Quatuor_Memoire_Performance from "../../photos/Quatuor_Memoire_Performance.jpg";
+import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const videos = ["https://www.youtube.com/embed/ZbatDxLbb7c"];
+const parser = new PublicGoogleSheetsParser(
+  "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+  { sheetName: "Media" },
+);
+
+const response = await parser.parse();
+
+let videos: any[] = [];
+
+for (let entry of response) {
+  videos.push(entry["Video"]);
+}
 ---
 
 <BaseLayout title="Media">

@@ -2,34 +2,61 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Event from "../../components/Event.astro";
+import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const events = [
-  {
-    date: "November 22, 2025",
-    info: "Doors: 6 p.m. Music: 7 p.m. Album launch: Mémoire x Mnémosyne",
-    address:
-      "Sanctuaire du Saint-Sacrement 500 Mont-Royal Ave. East Montreal, QC H2J 1W5",
-    tickets:
-      "https://laruchequebec.com/fr/projets/lancement-memoire-x-mnemosyne",
-  },
-  {
-    date: "January 19, 2026",
-    info: "Quatuor Mémoire with Lily Koslow and Joanna Mieleszko (sopranos), Music by Lily Koslow and Hannah A. Barnes, Presented by No Hay Banda",
-    address: "La Sala Rossa 4848 St Laurent Blvd Montreal, QC H2T 1R5",
-    tickets: "tbd",
-  },
-  {
-    date: "February 20, 2026",
-    info: "Quatuor Mémoire with Ensemble Éclat, Concerto for string quartet by Olivier St-Pierre",
-    address:
-      "Salle Pierre-Mercure 300 Boul. de Maisonneuve Est Montreal, QC H2X 3J8",
-    tickets: "tbd",
-  },
-  {
-    date: "April 17, 2026",
-    info: "Concert at the Chapelle historique du Bon-Pasteur, music by Francis Battah",
-  },
-];
+const parser = new PublicGoogleSheetsParser(
+  "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+  { sheetName: "Calendar EN", useFormat: true },
+);
+
+const response = await parser.parse();
+
+type Event = {
+  date: any;
+  info: any;
+  address: any;
+  tickets: any;
+};
+
+let events: Event[] = [];
+
+for (let entry of response) {
+  let event = {
+    date: entry["Date"],
+    info: entry["Info"],
+    address: entry["Address"],
+    tickets: entry["Tickets"],
+  };
+  events.push(event);
+}
+
+// const events = [
+//   {
+//     date: "November 22, 2025",
+//     info: "Doors: 6 p.m. Music: 7 p.m. Album launch: Mémoire x Mnémosyne",
+//     address:
+//       "Sanctuaire du Saint-Sacrement 500 Mont-Royal Ave. East Montreal, QC H2J 1W5",
+//     tickets:
+//       "https://laruchequebec.com/fr/projets/lancement-memoire-x-mnemosyne",
+//   },
+//   {
+//     date: "January 19, 2026",
+//     info: "Quatuor Mémoire with Lily Koslow and Joanna Mieleszko (sopranos), Music by Lily Koslow and Hannah A. Barnes, Presented by No Hay Banda",
+//     address: "La Sala Rossa 4848 St Laurent Blvd Montreal, QC H2T 1R5",
+//     tickets: "tbd",
+//   },
+//   {
+//     date: "February 20, 2026",
+//     info: "Quatuor Mémoire with Ensemble Éclat, Concerto for string quartet by Olivier St-Pierre",
+//     address:
+//       "Salle Pierre-Mercure 300 Boul. de Maisonneuve Est Montreal, QC H2X 3J8",
+//     tickets: "tbd",
+//   },
+//   {
+//     date: "April 17, 2026",
+//     info: "Concert at the Chapelle historique du Bon-Pasteur, music by Francis Battah",
+//   },
+// ];
 ---
 
 <BaseLayout title="Calendar">
