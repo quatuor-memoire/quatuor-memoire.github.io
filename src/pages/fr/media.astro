@@ -5,7 +5,7 @@ import Quatuor_Memoire_Performance from "../../photos/Quatuor_Memoire_Performanc
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
 const parser = new PublicGoogleSheetsParser(
-  "1MrYoYE14AajCga2HJV3qSuLBO3kwLKEwTHclDztynfE",
+  "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
   { sheetName: "Media" },
 );
 
@@ -16,8 +16,6 @@ let videos: any[] = [];
 for (let entry of response) {
   videos.push(entry["Video"]);
 }
-
-// const videos = ["https://www.youtube.com/embed/ZbatDxLbb7c"];
 ---
 
 <BaseLayout title="Media">
