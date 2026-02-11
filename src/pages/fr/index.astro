@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import { Image } from "astro:assets";
+import Logo from "../../logos/altered/Memoire logo glow no lines.png";
 import EB_Quator_Memoire_1 from "../../photos/EB_Quatuor_Memoire_1.jpg";
 import EB_Quator_Memoire_2 from "../../photos/EB_Quatuor_Memoire_2.jpg";
 import EB_Quator_Memoire_3 from "../../photos/EB_Quatuor_Memoire_3.jpg";
@@ -84,7 +85,8 @@ for (let entry of response) {
 				class="absolute inset-0 flex items-center justify-center text-center text-white text-9xl text-shadow-white text-shadow-lg font-[LibreBaskerville] sm:text-8xl lg:text-9xl animate-fadeIn will-change-transform transition-transform duration-300 ease-out max-sm:text-5xl max-sm:text-wrap"
 				:style="`transform: translateY(${smoothY * -0.05}px)`"
 			>
-				Quatuor Mémoire
+				<Image src={Logo} alt="Quatuor Memoire logo" class="w-full h-auto" />
+				<!-- Quatuor Mémoire -->
 			</h1>
 		</section>
 
@@ -98,11 +100,11 @@ for (let entry of response) {
 			>
 				<div class="flex flex-col gap-1">
 					<div
-						class="flex text-4xl justify-center items-center text-wrap w-[400px] text-white font-[LibreBaskerville]"
+						class="flex text-4xl justify-center items-center text-wrap w-[400px] text-white font-[LibreBaskerville] max-sm:pl-4"
 					>
 						À propos du Quatuor Mémoire
 					</div>
-					<div class="border-2 border-white w-56 h-1"></div>
+					<div class="border-2 border-white w-56 h-1 max-sm:ml-4"></div>
 				</div>
 				<div
 					class="w-1/2 max-sm:w-full will-change-transform transition-transform duration-300 ease-out"

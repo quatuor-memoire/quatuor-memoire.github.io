@@ -111,6 +111,11 @@ import { Image } from "astro:assets";
   x-data="{ open: false }"
   class="flex items-center justify-between w-full px-11 py-4 text-white transition-all duration-300 backdrop-blur-xs"
 >
+
+  <div class="flex items-center justify-center">
+    <Image src={Logo} alt="Group logo" class="w-auto h-20" />
+  </div>
+  
   <ul class="hidden md:flex gap-6 items-center text-lg font-[LibreBaskerville]">
     <li>
       <a
@@ -180,7 +185,7 @@ import { Image } from "astro:assets";
     x-transition:leave="transition ease-in duration-200"
     x-transition:leave-start="opacity-100 translate-y-0"
     x-transition:leave-end="opacity-0 -translate-y-2"
-    class="absolute top-full left-0 w-full bg-black/80 backdrop-blur-md md:hidden flex flex-col items-center gap-4 py-6 text-lg"
+    class="absolute top-full left-0 w-full bg-black/80 backdrop-blur-md md:hidden flex flex-col items-center gap-4 py-6 text-lg font-[LibreBaskerville]"
   >
     <a
       href={getRelativeLocaleUrl(locale)}
