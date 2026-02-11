@@ -44,16 +44,6 @@
 }
 
 @font-face {
-  font-family: NeueMachinaRegular;
-  src: url("../fonts/NeueMachina-Regular.otf");
-}
-
-@font-face {
-  font-family: NeueMachinaBold;
-  src: url("../fonts/NeueMachina-Ultrabold.otf");
-}
-
-@font-face {
   font-family: LibreBaskerville;
   src: url("../fonts/LibreBaskerville-VariableFont_wght.ttf");
 }
