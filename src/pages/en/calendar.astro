@@ -4,59 +4,31 @@ import Navbar from "../../components/Navbar.astro";
 import Event from "../../components/Event.astro";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const parser = new PublicGoogleSheetsParser(
-  "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
-  { sheetName: "Calendar EN", useFormat: true },
-);
+// const parser = new PublicGoogleSheetsParser(
+//   "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+//   { sheetName: "Calendar EN", useFormat: true },
+// );
 
-const response = await parser.parse();
+// const response = await parser.parse();
 
-type Event = {
-  date: any;
-  info: any;
-  address: any;
-  tickets: any;
-};
+// type Event = {
+//   date: any;
+//   info: any;
+//   address: any;
+//   tickets: any;
+// };
 
-let events: Event[] = [];
+// let events: Event[] = [];
 
-for (let entry of response) {
-  let event = {
-    date: entry["Date"],
-    info: entry["Info"],
-    address: entry["Address"],
-    tickets: entry["Tickets"],
-  };
-  events.push(event);
-}
-
-// const events = [
-//   {
-//     date: "November 22, 2025",
-//     info: "Doors: 6 p.m. Music: 7 p.m. Album launch: Mémoire x Mnémosyne",
-//     address:
-//       "Sanctuaire du Saint-Sacrement 500 Mont-Royal Ave. East Montreal, QC H2J 1W5",
-//     tickets:
-//       "https://laruchequebec.com/fr/projets/lancement-memoire-x-mnemosyne",
-//   },
-//   {
-//     date: "January 19, 2026",
-//     info: "Quatuor Mémoire with Lily Koslow and Joanna Mieleszko (sopranos), Music by Lily Koslow and Hannah A. Barnes, Presented by No Hay Banda",
-//     address: "La Sala Rossa 4848 St Laurent Blvd Montreal, QC H2T 1R5",
-//     tickets: "tbd",
-//   },
-//   {
-//     date: "February 20, 2026",
-//     info: "Quatuor Mémoire with Ensemble Éclat, Concerto for string quartet by Olivier St-Pierre",
-//     address:
-//       "Salle Pierre-Mercure 300 Boul. de Maisonneuve Est Montreal, QC H2X 3J8",
-//     tickets: "tbd",
-//   },
-//   {
-//     date: "April 17, 2026",
-//     info: "Concert at the Chapelle historique du Bon-Pasteur, music by Francis Battah",
-//   },
-// ];
+// for (let entry of response) {
+//   let event = {
+//     date: entry["Date"],
+//     info: entry["Info"],
+//     address: entry["Address"],
+//     tickets: entry["Tickets"],
+//   };
+//   events.push(event);
+// }
 ---
 
 <BaseLayout title="Calendar">
@@ -74,9 +46,13 @@ for (let entry of response) {
         <div class="border-2 border-white h-1 w-sm"></div>
       </div>
       <div
+        id="events"
         class="flex flex-col items-start justify-center gap-6 max-w-2xl mt-8 max-sm:px-4"
       >
-        {
+        <div class="lds-ellipsis">
+          <div></div><div></div><div></div><div></div>
+        </div>
+        <!-- {
           events.map((event) => (
             <Event
               date={event.date}
@@ -85,8 +61,72 @@ for (let entry of response) {
               tickets={event.tickets}
             />
           ))
-        }
+        } -->
       </div>
     </div>
   </div>
+
+  <script
+    is:inline
+    src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"
+  ></script>
+  <script is:inline>
+    const parser = new PublicGoogleSheetsParser(
+      "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+      { useFormat: true },
+    );
+
+    const eventsData = {
+      events: [],
+    };
+
+    const retrieveDataPromises = [];
+
+    // Extract Calendar EN
+    parser.setOption({ sheetName: "Calendar EN" });
+    retrieveDataPromises.push(
+      parser.parse().then((data) => (eventsData.events = data)),
+    );
+
+    // When the document loads, inject the event data from the Google Sheet:
+    document.addEventListener("DOMContentLoaded", function () {
+      Promise.allSettled(retrieveDataPromises).then((results) => {
+        if (results.some((r) => r.status === "rejected")) {
+          // Error retrieving the spreadsheet, default to just injecting the link directly:
+          const container_div = document.getElementById("events");
+          container_div.innerHTML = `
+              <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
+            `;
+          return;
+        }
+
+        // Remove all loading spinners
+        document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
+
+        // Success processing sheet --inject it into the HTML:
+        Object.keys(eventsData).forEach((event_container_id) => {
+          let eventsContainer = document.getElementById(event_container_id);
+          eventsData[event_container_id].forEach(function (event) {
+            eventHtml = `<div class="flex items-start justify-center gap-4">
+                  <div class="gradient-border relative rounded-xl">
+                    <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular]">
+                      ${event["Date"]}
+                    </div>
+                  </div>
+              <div
+                class="flex-1 text-xl text-white font-[BebasNeueProRegular] text-wrap flex flex-col items-start justify-center"
+              >
+                <p>${event["Info"]}</p>
+                <p>${event["Address"]}</p>
+                    <a href=${event["Tickets"]} class="underline hover:text-blue-400" target="_blank">
+                      tickets
+                    </a>
+              </div>
+          </div>`;
+            eventsContainer.innerHTML += eventHtml;
+          });
+        });
+      });
+    });
+  </script>
 </BaseLayout>
