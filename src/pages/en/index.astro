@@ -11,30 +11,31 @@ import Portrait_Audreanne from "../../photos/Portrait_Audréanne.jpg";
 import Portrait_Bailey from "../../photos/Portrait_Bailey.jpg";
 import Portrait_Marilou from "../../photos/Portrait_Marilou.jpg";
 import Portrait_Meggie from "../../photos/Portrait_Meggie.jpg";
-import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const parser = new PublicGoogleSheetsParser(
-  "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
-  { sheetName: "About EN" },
-);
+// import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const response = await parser.parse();
+// const parser = new PublicGoogleSheetsParser(
+//   "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+//   { sheetName: "About EN" },
+// );
 
-let aboutData = {
-  descriptions: [] as any[],
-  bailey: [] as any[],
-  marilou: [] as any[],
-  meggie: [] as any[],
-  audreanne: [] as any[],
-};
+// const response = await parser.parse();
 
-for (let entry of response) {
-  aboutData.descriptions.push(entry["Description"]);
-  aboutData.bailey.push(entry["Bailey"]);
-  aboutData.marilou.push(entry["Marilou"]);
-  aboutData.meggie.push(entry["Meggie"]);
-  aboutData.audreanne.push(entry["Audreanne"]);
-}
+// let aboutData = {
+//   descriptions: [] as any[],
+//   bailey: [] as any[],
+//   marilou: [] as any[],
+//   meggie: [] as any[],
+//   audreanne: [] as any[],
+// };
+
+// for (let entry of response) {
+//   aboutData.descriptions.push(entry["Description"]);
+//   aboutData.bailey.push(entry["Bailey"]);
+//   aboutData.marilou.push(entry["Marilou"]);
+//   aboutData.meggie.push(entry["Meggie"]);
+//   aboutData.audreanne.push(entry["Audreanne"]);
+// }
 ---
 
 <!--  -->
@@ -122,9 +123,12 @@ for (let entry of response) {
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <div
+            id="description-0"
             class="text-xl text-white text-right font-[BebasNeueProRegular] max-sm:text-center max-sm:w-full max-sm:px-4"
           >
-            <p>{aboutData.descriptions[0]}</p>
+            <div class="lds-ellipsis">
+              <div></div><div></div><div></div><div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -141,9 +145,12 @@ for (let entry of response) {
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <div
+            id="description-1"
             class="text-xl text-white text-left max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular] max-sm:px-4"
           >
-            <p>{aboutData.descriptions[1]}</p>
+            <div class="lds-ellipsis">
+              <div></div><div></div><div></div><div></div>
+            </div>
           </div>
         </div>
         <div
@@ -181,9 +188,12 @@ for (let entry of response) {
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <div
+            id="description-2"
             class="text-xl text-white text-right max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular] max-sm:px-4"
           >
-            <p>{aboutData.descriptions[2]}</p>
+            <div class="lds-ellipsis">
+              <div></div><div></div><div></div><div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -201,9 +211,12 @@ for (let entry of response) {
           :style="`transform: translateY(${smoothY * -0.02}px)`"
         >
           <div
+            id="description-3"
             class="text-xl text-white text-left max-sm:text-center max-sm:h-fit font-[BebasNeueProRegular] max-sm:px-4"
           >
-            <p>{aboutData.descriptions[3]}</p>
+            <div class="lds-ellipsis">
+              <div></div><div></div><div></div><div></div>
+            </div>
           </div>
         </div>
 
@@ -248,16 +261,12 @@ for (let entry of response) {
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
             <div
+              id="bailey"
               class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
             >
-              {
-                aboutData.bailey.map((line) => (
-                  <>
-                    <p>{line}</p>
-                    <br />
-                  </>
-                ))
-              }
+              <div class="lds-ellipsis">
+                <div></div><div></div><div></div><div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -283,16 +292,13 @@ for (let entry of response) {
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
             <div
-              class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
+              id="marilou"
+              class="text-white text-base font-[EditorialNewRegular]
+              overflow-y-auto max-h-full text-center"
             >
-              {
-                aboutData.marilou.map((line) => (
-                  <>
-                    <p>{line}</p>
-                    <br />
-                  </>
-                ))
-              }
+              <div class="lds-ellipsis">
+                <div></div><div></div><div></div><div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -313,16 +319,12 @@ for (let entry of response) {
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
             <div
+              id="meggie"
               class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
             >
-              {
-                aboutData.meggie.map((line) => (
-                  <>
-                    <p>{line}</p>
-                    <br />
-                  </>
-                ))
-              }
+              <div class="lds-ellipsis">
+                <div></div><div></div><div></div><div></div>
+              </div>
             </div>
           </div>
         </div>
@@ -343,20 +345,98 @@ for (let entry of response) {
             :class="{ 'opacity-80': open, 'opacity-0 pointer-events-none': !open }"
           >
             <div
+              id="audreanne"
               class="text-white text-base font-[EditorialNewRegular] overflow-y-auto max-h-full text-center"
             >
-              {
-                aboutData.audreanne.map((line) => (
-                  <>
-                    <p>{line}</p>
-                    <br />
-                  </>
-                ))
-              }
+              <div class="lds-ellipsis">
+                <div></div><div></div><div></div><div></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </div>
+
+  <script
+    is:inline
+    src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"
+  ></script>
+  <script is:inline>
+    const parser = new PublicGoogleSheetsParser(
+      "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+      { useFormat: true },
+    );
+
+    const aboutData = {
+      data: [],
+    };
+
+    const retrieveDataPromises = [];
+
+    // Extract About EN
+    parser.setOption({ sheetName: "About EN" });
+    retrieveDataPromises.push(
+      parser.parse().then((data) => (aboutData.data = data)),
+    );
+
+    // When the document loads, inject the event data from the Google Sheet:
+    document.addEventListener("DOMContentLoaded", function () {
+      Promise.allSettled(retrieveDataPromises).then((results) => {
+        if (results.some((r) => r.status === "rejected")) {
+          // Error retrieving the spreadsheet, default to just injecting the link directly:
+          //   const container_div = document.getElementById("events");
+          //   container_div.innerHTML = `
+          //       <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
+          //     `;
+          //   return;
+        }
+
+        // Remove all loading spinners
+        document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
+
+        let aboutContent = {
+          descriptions: [],
+          bailey: [],
+          marilou: [],
+          meggie: [],
+          audreanne: [],
+        };
+        for (let datum of aboutData.data) {
+          aboutContent.descriptions.push(datum["Description"]);
+          aboutContent.bailey.push(datum["Bailey"]);
+          aboutContent.marilou.push(datum["Marilou"]);
+          aboutContent.meggie.push(datum["Meggie"]);
+          aboutContent.audreanne.push(datum["Audreanne"]);
+        }
+
+        // Success processing sheet --inject it into the HTML:
+        for (let category of [
+          "descriptions",
+          "bailey",
+          "marilou",
+          "meggie",
+          "audreanne",
+        ]) {
+          if (category === "descriptions") {
+            for (let i = 0; i < aboutContent[category].length; i++) {
+              const categoryContainer = document.getElementById(
+                `description-${i}`,
+              );
+              if (!categoryContainer) continue;
+              let aboutHtml = `<p>${aboutContent[category][i]}</p>`;
+              categoryContainer.innerHTML += aboutHtml;
+            }
+          } else {
+            const categoryContainer = document.getElementById(`${category}`);
+            if (!categoryContainer) continue;
+            for (let i = 0; i < aboutContent[category].length; i++) {
+              aboutHtml = `<p>${aboutContent[category][i]}</p><br />`;
+              categoryContainer.innerHTML += aboutHtml;
+            }
+          }
+        }
+      });
+    });
+  </script>
 </BaseLayout>
