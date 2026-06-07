@@ -378,71 +378,63 @@ import Portrait_Meggie from "../../photos/Portrait_Meggie.jpg";
 			);
 
 			// When the document loads, inject the event data from the Google Sheet:
-			document.addEventListener(
-				"astro:page-load",
-				function () {
-					Promise.allSettled(retrieveDataPromises).then((results) => {
-						if (results.some((r) => r.status === "rejected")) {
-							// Error retrieving the spreadsheet, default to just injecting the link directly:
-							//   const container_div = document.getElementById("events");
-							//   container_div.innerHTML = `
-							//       <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
-							//     `;
-							//   return;
-						}
+			document.addEventListener("astro:page-load", function () {
+				Promise.allSettled(retrieveDataPromises).then((results) => {
+					if (results.some((r) => r.status === "rejected")) {
+						// Error retrieving the spreadsheet, default to just injecting the link directly:
+						//   const container_div = document.getElementById("events");
+						//   container_div.innerHTML = `
+						//       <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
+						//     `;
+						//   return;
+					}
 
-						// Remove all loading spinners
-						document
-							.querySelectorAll(".lds-ellipsis")
-							.forEach((e) => e.remove());
+					// Remove all loading spinners
+					document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
 
-						let aboutContent = {
-							descriptions: [],
-							bailey: [],
-							marilou: [],
-							meggie: [],
-							audreanne: [],
-						};
-						for (let datum of aboutData.data) {
-							aboutContent.descriptions.push(datum["Description"]);
-							aboutContent.bailey.push(datum["Bailey"]);
-							aboutContent.marilou.push(datum["Marilou"]);
-							aboutContent.meggie.push(datum["Meggie"]);
-							aboutContent.audreanne.push(datum["Audreanne"]);
-						}
+					let aboutContent = {
+						descriptions: [],
+						bailey: [],
+						marilou: [],
+						meggie: [],
+						audreanne: [],
+					};
+					for (let datum of aboutData.data) {
+						aboutContent.descriptions.push(datum["Description"]);
+						aboutContent.bailey.push(datum["Bailey"]);
+						aboutContent.marilou.push(datum["Marilou"]);
+						aboutContent.meggie.push(datum["Meggie"]);
+						aboutContent.audreanne.push(datum["Audreanne"]);
+					}
 
-						// Success processing sheet --inject it into the HTML:
-						for (let category of [
-							"descriptions",
-							"bailey",
-							"marilou",
-							"meggie",
-							"audreanne",
-						]) {
-							if (category === "descriptions") {
-								for (let i = 0; i < aboutContent[category].length; i++) {
-									const categoryContainer = document.getElementById(
-										`description-${i}`,
-									);
-									if (!categoryContainer) continue;
-									let aboutHtml = `<p>${aboutContent[category][i]}</p>`;
-									categoryContainer.innerHTML += aboutHtml;
-								}
-							} else {
+					// Success processing sheet --inject it into the HTML:
+					for (let category of [
+						"descriptions",
+						"bailey",
+						"marilou",
+						"meggie",
+						"audreanne",
+					]) {
+						if (category === "descriptions") {
+							for (let i = 0; i < aboutContent[category].length; i++) {
 								const categoryContainer = document.getElementById(
-									`${category}`,
+									`description-${i}`,
 								);
 								if (!categoryContainer) continue;
-								for (let i = 0; i < aboutContent[category].length; i++) {
-									aboutHtml = `<p>${aboutContent[category][i]}</p><br />`;
-									categoryContainer.innerHTML += aboutHtml;
-								}
+								let aboutHtml = `<p>${aboutContent[category][i]}</p>`;
+								categoryContainer.innerHTML += aboutHtml;
+							}
+						} else {
+							const categoryContainer = document.getElementById(`${category}`);
+							if (!categoryContainer) continue;
+							for (let i = 0; i < aboutContent[category].length; i++) {
+								aboutHtml = `<p>${aboutContent[category][i]}</p><br />`;
+								categoryContainer.innerHTML += aboutHtml;
 							}
 						}
-					});
-				},
-				,
-			);
+					}
+				});
+			});
 		})();
 	</script>
 </BaseLayout>

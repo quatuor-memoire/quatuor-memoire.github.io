@@ -90,31 +90,27 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
       );
 
       // Use 'astro:page-load' to support View Transitions
-      document.addEventListener(
-        "astro:page-load",
-        function () {
-          const eventsContainer = document.getElementById("events");
-          if (!eventsContainer) return;
+      document.addEventListener("astro:page-load", function () {
+        const eventsContainer = document.getElementById("events");
+        if (!eventsContainer) return;
 
-          Promise.allSettled(retrieveDataPromises).then((results) => {
-            if (results.some((r) => r.status === "rejected")) {
-              eventsContainer.innerHTML = `
+        Promise.allSettled(retrieveDataPromises).then((results) => {
+          if (results.some((r) => r.status === "rejected")) {
+            eventsContainer.innerHTML = `
               <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
             `;
-              return;
-            }
+            return;
+          }
 
-            // Remove all loading spinners
-            document
-              .querySelectorAll(".lds-ellipsis")
-              .forEach((e) => e.remove());
+          // Remove all loading spinners
+          document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
 
-            // Success processing sheet -- inject it into the HTML:
-            // Clear container first to prevent duplicates on navigation
-            eventsContainer.innerHTML = "";
+          // Success processing sheet -- inject it into the HTML:
+          // Clear container first to prevent duplicates on navigation
+          eventsContainer.innerHTML = "";
 
-            eventsData.events.forEach(function (event) {
-              const eventHtml = `<div class="flex items-start justify-center gap-4">
+          eventsData.events.forEach(function (event) {
+            const eventHtml = `<div class="flex items-start justify-center gap-4">
               <div class="gradient-border relative rounded-xl">
                 <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular]">
                   ${event["Date"]}
@@ -128,12 +124,10 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
                 </a>
               </div>
           </div>`;
-              eventsContainer.insertAdjacentHTML("beforeend", eventHtml);
-            });
+            eventsContainer.insertAdjacentHTML("beforeend", eventHtml);
           });
-        },
-        ,
-      );
+        });
+      });
     })();
   </script>
 </BaseLayout>

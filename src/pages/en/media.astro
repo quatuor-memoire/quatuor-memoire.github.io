@@ -66,30 +66,28 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
         );
 
         // When the document loads, inject the event data from the Google Sheet:
-        document.addEventListener(
-          "astro:page-load",
-          function () {
-            Promise.allSettled(retrieveDataPromises).then((results) => {
-              if (results.some((r) => r.status === "rejected")) {
-                // Error retrieving the spreadsheet, default to just injecting the link directly:
-                const container_div = document.getElementById("events");
-                container_div.innerHTML = `
+        document.addEventListener("astro:page-load", function () {
+          Promise.allSettled(retrieveDataPromises).then((results) => {
+            if (results.some((r) => r.status === "rejected")) {
+              // Error retrieving the spreadsheet, default to just injecting the link directly:
+              const container_div = document.getElementById("events");
+              container_div.innerHTML = `
               <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
             `;
-                return;
-              }
+              return;
+            }
 
-              // Remove all loading spinners
-              document
-                .querySelectorAll(".lds-ellipsis")
-                .forEach((e) => e.remove());
+            // Remove all loading spinners
+            document
+              .querySelectorAll(".lds-ellipsis")
+              .forEach((e) => e.remove());
 
-              // Success processing sheet --inject it into the HTML:
-              const videosContainer = document.getElementById("videos");
+            // Success processing sheet --inject it into the HTML:
+            const videosContainer = document.getElementById("videos");
 
-              // Change 'videosData.events' to 'videosData.videos'
-              videosData.videos.forEach(function (video) {
-                const videoHtml = `<iframe
+            // Change 'videosData.events' to 'videosData.videos'
+            videosData.videos.forEach(function (video) {
+              const videoHtml = `<iframe
               class="rounded-xl"
               width="560"
               height="315"
@@ -98,12 +96,10 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>`;
-                videosContainer.insertAdjacentHTML("beforeend", videoHtml);
-              });
+              videosContainer.insertAdjacentHTML("beforeend", videoHtml);
             });
-          },
-          ,
-        );
+          });
+        });
       })();
     </script>
   </div>
