@@ -2,20 +2,20 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Quatuor_Memoire_Performance from "../../photos/Quatuor_Memoire_Performance.jpg";
-import PublicGoogleSheetsParser from "public-google-sheets-parser";
+// import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-const parser = new PublicGoogleSheetsParser(
-  "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
-  { sheetName: "Media" },
-);
+// const parser = new PublicGoogleSheetsParser(
+//   "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+//   { sheetName: "Media" },
+// );
 
-const response = await parser.parse();
+// const response = await parser.parse();
 
-let videos: any[] = [];
+// let videos: any[] = [];
 
-for (let entry of response) {
-  videos.push(entry["Video"]);
-}
+// for (let entry of response) {
+//   videos.push(entry["Video"]);
+// }
 ---
 
 <BaseLayout title="Media">
@@ -39,9 +39,10 @@ for (let entry of response) {
         <div class="border-2 border-white h-1 w-sm"></div>
       </div>
       <div
+        id="videos"
         class="flex flex-row flex-wrap gap-4 items-start justify-center mt-8 max-sm:px-4"
       >
-        {
+        <!-- {
           videos.map((video) => (
             <iframe
               class="rounded-xl"
@@ -52,8 +53,64 @@ for (let entry of response) {
               allowfullscreen
             />
           ))
-        }
+        } -->
       </div>
     </div>
+    <script
+      is:inline
+      src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"
+    ></script>
+    <script is:inline>
+      const parser = new PublicGoogleSheetsParser(
+        "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+        { useFormat: true },
+      );
+
+      const videosData = {
+        videos: [],
+      };
+
+      const retrieveDataPromises = [];
+
+      // Extract Media
+      parser.setOption({ sheetName: "Media" });
+      retrieveDataPromises.push(
+        parser.parse().then((data) => (videosData.videos = data)),
+      );
+
+      // When the document loads, inject the event data from the Google Sheet:
+      document.addEventListener("DOMContentLoaded", function () {
+        Promise.allSettled(retrieveDataPromises).then((results) => {
+          if (results.some((r) => r.status === "rejected")) {
+            // Error retrieving the spreadsheet, default to just injecting the link directly:
+            const container_div = document.getElementById("events");
+            container_div.innerHTML = `
+              <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
+            `;
+            return;
+          }
+
+          // Remove all loading spinners
+          document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
+
+          // Success processing sheet --inject it into the HTML:
+          const videosContainer = document.getElementById("videos");
+
+          // Change 'videosData.events' to 'videosData.videos'
+          videosData.videos.forEach(function (video) {
+            const videoHtml = `<iframe
+              class="rounded-xl"
+              width="560"
+              height="315"
+              src="${video["Video"]}"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>`;
+            videosContainer.insertAdjacentHTML("beforeend", videoHtml);
+          });
+        });
+      });
+    </script>
   </div>
 </BaseLayout>
