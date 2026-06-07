@@ -104,27 +104,24 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
         document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
 
         // Success processing sheet --inject it into the HTML:
-        Object.keys(eventsData).forEach((event_container_id) => {
-          let eventsContainer = document.getElementById(event_container_id);
-          eventsData[event_container_id].forEach(function (event) {
-            eventHtml = `<div class="flex items-start justify-center gap-4">
-                  <div class="gradient-border relative rounded-xl">
-                    <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular]">
-                      ${event["Date"]}
-                    </div>
-                  </div>
-              <div
-                class="flex-1 text-xl text-white font-[BebasNeueProRegular] text-wrap flex flex-col items-start justify-center"
-              >
+        const eventsContainer = document.getElementById("events");
+
+        eventsData.events.forEach(function (event) {
+          const eventHtml = `<div class="flex items-start justify-center gap-4">
+              <div class="gradient-border relative rounded-xl">
+                <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular]">
+                  ${event["Date"]}
+                </div>
+              </div>
+              <div class="flex-1 text-xl text-white font-[BebasNeueProRegular] text-wrap flex flex-col items-start justify-center">
                 <p>${event["Info"]}</p>
                 <p>${event["Address"]}</p>
-                    <a href=${event["Tickets"]} class="underline hover:text-blue-400" target="_blank">
-                      tickets
-                    </a>
+                <a href="${event["Tickets"]}" class="underline hover:text-blue-400" target="_blank">
+                  tickets
+                </a>
               </div>
           </div>`;
-            eventsContainer.innerHTML += eventHtml;
-          });
+          eventsContainer.insertAdjacentHTML("beforeend", eventHtml);
         });
       });
     });
