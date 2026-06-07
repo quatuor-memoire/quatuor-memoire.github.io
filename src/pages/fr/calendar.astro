@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar.astro";
 import Evenement from "../../components/Event.astro";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-// const parser = new PublicGoogleSheetsParser(
+// let parser = new PublicGoogleSheetsParser(
 //   "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
 //   { sheetName: "Calendar FR", useFormat: true },
 // );
@@ -72,7 +72,7 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
   ></script>
   <script is:inline>
     (function () {
-      const parser = new PublicGoogleSheetsParser(
+      let parser = new PublicGoogleSheetsParser(
         "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
         { useFormat: true },
       );

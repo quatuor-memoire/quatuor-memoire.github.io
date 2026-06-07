@@ -4,7 +4,7 @@ import Navbar from "../../components/Navbar.astro";
 import Quatuor_Memoire_Performance from "../../photos/Quatuor_Memoire_Performance.jpg";
 import PublicGoogleSheetsParser from "public-google-sheets-parser";
 
-// const parser = new PublicGoogleSheetsParser(
+// let parser = new PublicGoogleSheetsParser(
 //   "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
 //   { sheetName: "Media" },
 // );
@@ -47,7 +47,7 @@ import PublicGoogleSheetsParser from "public-google-sheets-parser";
       src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"
     ></script>
     <script is:inline>
-      const parser = new PublicGoogleSheetsParser(
+      let parser = new PublicGoogleSheetsParser(
         "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
         { useFormat: true },
       );
