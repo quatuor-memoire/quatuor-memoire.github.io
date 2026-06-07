@@ -61,44 +61,49 @@ import Quatuor_Memoire_Performance from "../../photos/Quatuor_Memoire_Performanc
       src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"
     ></script>
     <script is:inline>
-      let parser = new PublicGoogleSheetsParser(
-        "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
-        { useFormat: true },
-      );
+      (function () {
+        let parser = new PublicGoogleSheetsParser(
+          "1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+          { useFormat: true },
+        );
 
-      const videosData = {
-        videos: [],
-      };
+        const videosData = {
+          videos: [],
+        };
 
-      const retrieveDataPromises = [];
+        const retrieveDataPromises = [];
 
-      // Extract Media
-      parser.setOption({ sheetName: "Media" });
-      retrieveDataPromises.push(
-        parser.parse().then((data) => (videosData.videos = data)),
-      );
+        // Extract Media
+        parser.setOption({ sheetName: "Media" });
+        retrieveDataPromises.push(
+          parser.parse().then((data) => (videosData.videos = data)),
+        );
 
-      // When the document loads, inject the event data from the Google Sheet:
-      document.addEventListener("DOMContentLoaded", function () {
-        Promise.allSettled(retrieveDataPromises).then((results) => {
-          if (results.some((r) => r.status === "rejected")) {
-            // Error retrieving the spreadsheet, default to just injecting the link directly:
-            const container_div = document.getElementById("events");
-            container_div.innerHTML = `
+        // When the document loads, inject the event data from the Google Sheet:
+        document.addEventListener(
+          "astro:page-load",
+          function () {
+            Promise.allSettled(retrieveDataPromises).then((results) => {
+              if (results.some((r) => r.status === "rejected")) {
+                // Error retrieving the spreadsheet, default to just injecting the link directly:
+                const container_div = document.getElementById("events");
+                container_div.innerHTML = `
               <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
             `;
-            return;
-          }
+                return;
+              }
 
-          // Remove all loading spinners
-          document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
+              // Remove all loading spinners
+              document
+                .querySelectorAll(".lds-ellipsis")
+                .forEach((e) => e.remove());
 
-          // Success processing sheet --inject it into the HTML:
-          const videosContainer = document.getElementById("videos");
+              // Success processing sheet --inject it into the HTML:
+              const videosContainer = document.getElementById("videos");
 
-          // Change 'videosData.events' to 'videosData.videos'
-          videosData.videos.forEach(function (video) {
-            const videoHtml = `<iframe
+              // Change 'videosData.events' to 'videosData.videos'
+              videosData.videos.forEach(function (video) {
+                const videoHtml = `<iframe
               class="rounded-xl"
               width="560"
               height="315"
@@ -107,10 +112,13 @@ import Quatuor_Memoire_Performance from "../../photos/Quatuor_Memoire_Performanc
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowfullscreen
             ></iframe>`;
-            videosContainer.insertAdjacentHTML("beforeend", videoHtml);
-          });
-        });
-      });
+                videosContainer.insertAdjacentHTML("beforeend", videoHtml);
+              });
+            });
+          },
+          { once: true },
+        );
+      })();
     </script>
   </div>
 </BaseLayout>

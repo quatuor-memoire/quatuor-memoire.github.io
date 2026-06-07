@@ -359,80 +359,90 @@ import Portrait_Meggie from "../../photos/Portrait_Meggie.jpg";
 		src="https://cdn.jsdelivr.net/npm/public-google-sheets-parser@latest"
 	></script>
 	<script is:inline>
-		let parser = new PublicGoogleSheetsParser(
-			"1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
-			{ useFormat: true },
-		);
+		(function () {
+			let parser = new PublicGoogleSheetsParser(
+				"1Exc7lnFY4W6HlVh4gV6Y4QI86j8HUssmIRyOjwzGCDo",
+				{ useFormat: true },
+			);
 
-		const aboutData = {
-			data: [],
-		};
+			const aboutData = {
+				data: [],
+			};
 
-		const retrieveDataPromises = [];
+			const retrieveDataPromises = [];
 
-		// Extract About EN
-		parser.setOption({ sheetName: "About FR" });
-		retrieveDataPromises.push(
-			parser.parse().then((data) => (aboutData.data = data)),
-		);
+			// Extract About EN
+			parser.setOption({ sheetName: "About FR" });
+			retrieveDataPromises.push(
+				parser.parse().then((data) => (aboutData.data = data)),
+			);
 
-		// When the document loads, inject the event data from the Google Sheet:
-		document.addEventListener("DOMContentLoaded", function () {
-			Promise.allSettled(retrieveDataPromises).then((results) => {
-				if (results.some((r) => r.status === "rejected")) {
-					// Error retrieving the spreadsheet, default to just injecting the link directly:
-					//   const container_div = document.getElementById("events");
-					//   container_div.innerHTML = `
-					//       <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
-					//     `;
-					//   return;
-				}
-
-				// Remove all loading spinners
-				document.querySelectorAll(".lds-ellipsis").forEach((e) => e.remove());
-
-				let aboutContent = {
-					descriptions: [],
-					bailey: [],
-					marilou: [],
-					meggie: [],
-					audreanne: [],
-				};
-				for (let datum of aboutData.data) {
-					aboutContent.descriptions.push(datum["Description"]);
-					aboutContent.bailey.push(datum["Bailey"]);
-					aboutContent.marilou.push(datum["Marilou"]);
-					aboutContent.meggie.push(datum["Meggie"]);
-					aboutContent.audreanne.push(datum["Audreanne"]);
-				}
-
-				// Success processing sheet --inject it into the HTML:
-				for (let category of [
-					"descriptions",
-					"bailey",
-					"marilou",
-					"meggie",
-					"audreanne",
-				]) {
-					if (category === "descriptions") {
-						for (let i = 0; i < aboutContent[category].length; i++) {
-							const categoryContainer = document.getElementById(
-								`description-${i}`,
-							);
-							if (!categoryContainer) continue;
-							let aboutHtml = `<p>${aboutContent[category][i]}</p>`;
-							categoryContainer.innerHTML += aboutHtml;
+			// When the document loads, inject the event data from the Google Sheet:
+			document.addEventListener(
+				"astro:page-load",
+				function () {
+					Promise.allSettled(retrieveDataPromises).then((results) => {
+						if (results.some((r) => r.status === "rejected")) {
+							// Error retrieving the spreadsheet, default to just injecting the link directly:
+							//   const container_div = document.getElementById("events");
+							//   container_div.innerHTML = `
+							//       <p>&#128560; Error loading event data dynamically. See the schedule in the public Google Sheet</a>.</p>
+							//     `;
+							//   return;
 						}
-					} else {
-						const categoryContainer = document.getElementById(`${category}`);
-						if (!categoryContainer) continue;
-						for (let i = 0; i < aboutContent[category].length; i++) {
-							aboutHtml = `<p>${aboutContent[category][i]}</p><br />`;
-							categoryContainer.innerHTML += aboutHtml;
+
+						// Remove all loading spinners
+						document
+							.querySelectorAll(".lds-ellipsis")
+							.forEach((e) => e.remove());
+
+						let aboutContent = {
+							descriptions: [],
+							bailey: [],
+							marilou: [],
+							meggie: [],
+							audreanne: [],
+						};
+						for (let datum of aboutData.data) {
+							aboutContent.descriptions.push(datum["Description"]);
+							aboutContent.bailey.push(datum["Bailey"]);
+							aboutContent.marilou.push(datum["Marilou"]);
+							aboutContent.meggie.push(datum["Meggie"]);
+							aboutContent.audreanne.push(datum["Audreanne"]);
 						}
-					}
-				}
-			});
-		});
+
+						// Success processing sheet --inject it into the HTML:
+						for (let category of [
+							"descriptions",
+							"bailey",
+							"marilou",
+							"meggie",
+							"audreanne",
+						]) {
+							if (category === "descriptions") {
+								for (let i = 0; i < aboutContent[category].length; i++) {
+									const categoryContainer = document.getElementById(
+										`description-${i}`,
+									);
+									if (!categoryContainer) continue;
+									let aboutHtml = `<p>${aboutContent[category][i]}</p>`;
+									categoryContainer.innerHTML += aboutHtml;
+								}
+							} else {
+								const categoryContainer = document.getElementById(
+									`${category}`,
+								);
+								if (!categoryContainer) continue;
+								for (let i = 0; i < aboutContent[category].length; i++) {
+									aboutHtml = `<p>${aboutContent[category][i]}</p><br />`;
+									categoryContainer.innerHTML += aboutHtml;
+								}
+							}
+						}
+					});
+				},
+				{ once: true },
+			);
+		})();
 	</script>
 </BaseLayout>
