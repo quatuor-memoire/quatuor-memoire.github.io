@@ -6,20 +6,25 @@ let { date, info, address, tickets } = Astro.props;
   {
     date && (
       <div class="gradient-border relative rounded-xl">
-        <div class="w-32 h-32 p-2 text-2xl text-center flex justify-center items-center text-white font-[EditorialNewRegular]">
+        <div class="w-40 h-40 p-2 text-2xl text-center flex flex-col justify-center items-center text-white font-[EditorialNewRegular]">
           {date}
         </div>
       </div>
     )
   }
   <div
-    class="flex-1 text-xl text-white font-[BebasNeueProRegular] text-wrap flex flex-col items-start justify-center"
+    class="flex-1 text-xl text-white font-[BebasNeueProRegular] flex flex-col justify-center items-start"
   >
-    {info && <p>{info}</p>}
-    {address && <p>{address}</p>}
+    <p style="white-space: pre-line;" class="text-left">{info}</p>
+
+    {address && <p class="text-left">{address}</p>}
     {
       tickets && (
-        <a href={tickets} class="underline hover:text-blue-400" target="_blank">
+        <a
+          href={tickets}
+          class="underline hover:text-blue-400 text-left"
+          target="_blank"
+        >
           tickets
         </a>
       )
